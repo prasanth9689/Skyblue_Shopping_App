@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity"
+    >
+
+    <RelativeLayout
+        android:id="@+id/empty_search_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top">
+
+
+        <ImageView
+            android:id="@+id/empty_search_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_search_black_24dp"
+            app:tint="@color/grey_dialog_box" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/empty_search_icon"
+            android:layout_centerHorizontal="true"
+            android:text="@string/search_now"
+            android:fontFamily="@font/open_sans_light"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="5dp">
+            <ImageView
+                android:id="@+id/back_btn_search_view"
+                android:layout_width="35dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/ic_baseline_arrow_back_white_40"
+                app:tint="@color/black" />
+
+            <EditText
+                android:id="@+id/editTextSearch"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toRightOf="@id/back_btn_search_view"
+                android:background="@color/white"
+                android:cursorVisible="true"
+                android:focusable="true"
+                android:hint="@string/search_brands_smart_phones_headset_cloths"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="#1E1F20"
+                android:textColorHighlight="#00BCD4"
+                android:textColorHint="#C46D6D6D"
+                android:textColorLink="#00BCD4"
+                android:textSize="15dp"
+                android:textCursorDrawable="@drawable/color_cursor_blue"
+                android:fontFamily="@font/open_sans_condensed_bold"/>
+
+            <ImageView
+                android:id="@+id/id_action_search2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerInParent="true"
+                android:layout_marginRight="5dp"
+                app:srcCompat="@drawable/ic_search_black_24dp" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:indeterminateDrawable="@drawable/progrress_bar_circle_custom"
+        android:layout_marginTop="60dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/top"
+        android:orientation="horizontal"
+        android:scrollbars="none" />
+</RelativeLayout>

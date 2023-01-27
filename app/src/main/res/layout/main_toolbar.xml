@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Home"
+    >
+
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/splash_gradient"
+        android:theme="@style/ThemeOverlay.AppCompat">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:background="@drawable/splash_gradient"
+            app:layout_scrollFlags="scroll|enterAlways|snap">
+
+            <ImageView
+                android:id="@+id/id_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/common_menu_35"
+                android:onClick="ClickMenu"
+                android:layout_marginStart="5dp"
+                android:layout_centerVertical="true"/>
+
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@id/id_menu"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:fontFamily="@font/open_sans_light"
+                android:text="Skyblue"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+<!--            <ImageView-->
+<!--                android:id="@+id/logo"-->
+<!--                android:layout_width="20dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_centerVertical="true"-->
+<!--                android:layout_toRightOf="@id/name"-->
+<!--                android:src="@drawable/shopping_cart" />-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@id/name"-->
+<!--                android:layout_marginRight="5dp"-->
+<!--                android:layout_toLeftOf="@id/name"-->
+<!--                android:text="Online shopping"-->
+<!--                android:textColor="@color/white"-->
+<!--                android:layout_alignParentRight="true"-->
+<!--                android:textSize="5dp" />-->
+
+            <RelativeLayout
+                android:id="@+id/id_login_text_rel"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/id_user_account">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:fontFamily="@font/open_sans_light"
+                    android:text="@string/log_in"
+                    android:textColor="@color/white"
+                    android:textStyle="bold|italic" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/id_user_text_rel"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/id_user_account">
+
+
+                <TextView
+                    android:id="@+id/id_user_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textStyle="bold" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/id_rel_user_account"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true">
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/id_user_account"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:src="@drawable/ic_user_new"
+                app:tint="@color/white" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+android:background="@color/white"
+            >
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="5dp"
+
+                android:layout_marginRight="5dp">
+
+
+                <EditText
+                    android:id="@+id/editTextSearch"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginLeft="10dp"
+                    android:background="@color/white"
+                    android:cursorVisible="false"
+                    android:focusable="false"
+                    android:fontFamily="@font/open_sans_light"
+                    android:hint="@string/search_brands_smart_phones_headset_cloths"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:textColor="#1E1F20"
+                    android:textColorHighlight="#00BCD4"
+                    android:textColorHint="#C46D6D6D"
+                    android:textColorLink="#00BCD4"
+                    android:textSize="12dp" />
+
+                <ImageView
+                    android:id="@+id/id_action_search2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="5dp"
+                    app:srcCompat="@drawable/ic_search_black_24dp"
+                    app:tint="@color/shadow_1" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+           </com.google.android.material.appbar.AppBarLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:fillViewport="true"
+        android:layout_height="match_parent"
+
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".Home"
+        >
+
+        <!-- Banner -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical">
+
+         <RelativeLayout
+             android:layout_width="match_parent"
+             android:layout_height="70dp"
+             android:background="@drawable/splash_gradient">
+
+             <HorizontalScrollView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:fillViewport="true"
+                 android:measureAllChildren="false"
+                 android:scrollbars="none"
+                 android:layout_centerVertical="true">
+
+                 <LinearLayout
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:orientation="horizontal">
+
+                     <androidx.cardview.widget.CardView
+                         android:layout_width="65dp"
+                         android:layout_height="65dp"
+                         app:cardCornerRadius="50dp"
+                         app:cardBackgroundColor="@color/white">
+
+                         <ImageView
+                             android:onClick="ClickGategoryIcon"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:padding="10dp"
+                             android:src="@drawable/pr_1_vivo_21_5g"/>
+
+                     </androidx.cardview.widget.CardView>
+
+                     <androidx.cardview.widget.CardView
+                         android:layout_width="65dp"
+                         android:layout_height="65dp"
+                         app:cardCornerRadius="50dp"
+                         android:layout_marginLeft="5dp"
+                         app:cardBackgroundColor="@color/white">
+                         <ImageView
+                             android:onClick="ClickGategoryIcon"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:padding="10dp"
+                             android:src="@drawable/pr_2_bluetooth_headset"/>
+                     </androidx.cardview.widget.CardView>
+
+                     <androidx.cardview.widget.CardView
+                         android:layout_width="65dp"
+                         android:layout_height="65dp"
+                         app:cardCornerRadius="50dp"
+                         android:layout_marginLeft="5dp"
+                         app:cardBackgroundColor="@color/white">
+                         <ImageView
+                             android:onClick="ClickGategoryIcon"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:padding="10dp"
+                             android:src="@drawable/pr_4_shirts"/>
+                     </androidx.cardview.widget.CardView>
+
+                     <androidx.cardview.widget.CardView
+                         android:layout_width="65dp"
+                         android:layout_height="65dp"
+                         app:cardCornerRadius="50dp"
+                         android:layout_marginLeft="5dp"
+                         app:cardBackgroundColor="@color/white">
+                         <ImageView
+                             android:onClick="ClickGategoryIcon"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:padding="10dp"
+                             android:src="@drawable/pr_5_chudi"/>
+                     </androidx.cardview.widget.CardView>
+
+                     <androidx.cardview.widget.CardView
+                         android:layout_width="65dp"
+                         android:layout_height="65dp"
+                         app:cardCornerRadius="50dp"
+                         android:layout_marginLeft="5dp"
+                         app:cardBackgroundColor="@color/white">
+                         <ImageView
+                             android:onClick="ClickGategoryIcon"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:padding="10dp"
+                             android:src="@drawable/pr_3_watch"/>
+                     </androidx.cardview.widget.CardView>
+
+                     <androidx.cardview.widget.CardView
+                         android:layout_width="65dp"
+                         android:layout_height="65dp"
+                         app:cardCornerRadius="50dp"
+                         android:layout_marginLeft="5dp"
+                         app:cardBackgroundColor="@color/white">
+                         <ImageView
+                             android:onClick="ClickGategoryIcon"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:padding="10dp"
+                             android:src="@drawable/pr_6_mobile_cover"/>
+                     </androidx.cardview.widget.CardView>
+
+                     <androidx.cardview.widget.CardView
+                         android:layout_width="65dp"
+                         android:layout_height="65dp"
+                         app:cardCornerRadius="50dp"
+                         android:layout_marginLeft="5dp"
+                         app:cardBackgroundColor="@color/white">
+                         <ImageView
+                             android:onClick="ClickGategoryIcon"
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:padding="10dp"
+                             android:src="@drawable/pr_home_appliance"/>
+                     </androidx.cardview.widget.CardView>
+
+                 </LinearLayout>
+
+             </HorizontalScrollView>
+
+         </RelativeLayout>
+
+
+        <!-- Banner -->
+
+      <!-- =========================================== -->
+      <!-- =============      item 1 ================= -->
+        <RelativeLayout
+            android:id="@+id/id_rel_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
+            android:background="@color/white">
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:indeterminateDrawable="@drawable/progrress_bar_circle_custom"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="13dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:scrollbars="none" />
+
+        </RelativeLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_nav_home"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+
+            android:background="@drawable/splash_gradient"
+            android:fontFamily="@font/open_sans_light"
+            app:elevation="8dp"
+            app:itemIconTint="@color/nav_item_state_list"
+            app:itemTextColor="#FFFFFF"
+            app:labelVisibilityMode="labeled"
+            app:menu="@menu/menu_navigation"
+            />
+
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

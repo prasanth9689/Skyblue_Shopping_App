@@ -1,0 +1,75 @@
+plugins {
+    id 'com.android.application'
+    id 'com.google.gms.google-services'
+
+}
+
+android {
+    compileSdk 31
+
+    defaultConfig {
+        applicationId "com.skyblue.shop"
+        minSdk 21
+        targetSdk 31
+        versionCode 1001
+        versionName "22310701"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding true
+    }
+
+
+    //For including Apache http libraries
+    useLibrary 'org.apache.http.legacy'
+}
+
+dependencies {
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.navigation:navigation-fragment:2.3.5'
+    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.android.material:material:1.2.1'
+
+
+    implementation 'com.hbb20:ccp:2.3.2'
+    implementation 'com.android.volley:volley:1.1.1'
+
+    implementation 'com.google.firebase:firebase-messaging:17.3.4'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
+
+
+    implementation 'com.amitshekhar.android:android-networking:1.0.2'
+
+    //Apache httpclient-android library
+    implementation group: 'org.apache.httpcomponents', name: 'httpclient-android', version: '4.3.5.1'
+    //Excluding httpclient since it is already part of httpclient-android
+    implementation('org.apache.httpcomponents:httpmime:4.3') {
+        exclude module: "httpclient"
+    }
+
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    // Skip this if you don't want to use integration libraries or configure Glide.
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
+    implementation("com.github.bumptech.glide:glide:4.11.0@aar") {
+        transitive = true
+    }
+}

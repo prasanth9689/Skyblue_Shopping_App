@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:background="@color/colorTopMenu">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/please_check_delivery_address"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_margin="5dp"
+        android:fontFamily="@font/open_sans_light"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:layout_margin="20dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/below_mentioned_empty_field"
+            android:textColor="@color/black"
+            android:fontFamily="@font/open_sans_light"/>
+
+        <TextView
+            android:id="@+id/empty_field_product_view_place_the_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:text=""
+            android:fontFamily="@font/open_sans_light"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/please_update_your_delivery_address_correctly"
+            android:fontFamily="@font/open_sans_light"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/then_place_the_order_thank_you_happy_to_shop"
+            android:fontFamily="@font/open_sans_light"/>
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/close_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@color/white"
+            android:text="@string/close"
+            android:textColor="@color/colorPrimaryBlue" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

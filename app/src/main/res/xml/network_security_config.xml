@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">skyblue.website</domain>
+        <domain includeSubdomains="true">www.skyblue.website</domain>
+        <domain includeSubdomains="true">103.50.162.147</domain>
+        <domain includeSubdomains="true">http://103.50.162.147</domain>
+        <domain includeSubdomains="true">http://103.50.162.147/~skyblqxl</domain>
+        <domain includeSubdomains="true">http://103.50.162.147/~skyblqxl/</domain>
+        <domain includeSubdomains="true">clgportal.online/</domain>
+        <domain includeSubdomains="true">http://cp-in-16.hostgator.tempwebhost.net</domain>
+        <domain includeSubdomains="true">http://cp-in-16.hostgator.tempwebhost.net/~skyblmde</domain>
+        <domain includeSubdomains="true">cp-in-16.hostgator.tempwebhost.net</domain>
+
+        <domain includeSubdomains="true">http://imobiless.com/</domain>
+        <domain includeSubdomains="true">http://imobiless.com</domain>
+        <domain includeSubdomains="true">imobiless.com</domain>
+        <domain includeSubdomains="true">148.66.146.10</domain>
+        <domain includeSubdomains="true">148.66.136.216</domain>
+        <domain includeSubdomains="true">https://skyblue-watch.xyz</domain>
+        <domain includeSubdomains="true">skyblue-watch.xyz</domain>
+        <domain includeSubdomains="true">http://sh021.hostgator.tempwebhost.net/</domain>
+        <domain includeSubdomains="true">sh021.hostgator.tempwebhost.net</domain>
+    </domain-config>
+</network-security-config>

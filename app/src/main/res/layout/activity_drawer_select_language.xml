@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".DrawerSelectLanguageActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_nav_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="false"
+        android:background="@color/colorPrimaryBlue">
+
+
+        <ImageView
+            android:id="@+id/id_back"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_white_40"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:tint="@color/white" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/id_back"
+            android:text="@string/select_language"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/open_sans_light"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@id/top_nav_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="onClickTamilLanguage"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:id="@+id/language_indian_tamil_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                />
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:src="@drawable/india_flag"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:layout_gravity="center_vertical"/>-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tamil"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"
+                />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/shadow_1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:id="@+id/language_indian_english_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                />
+<!--            <ImageView-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:src="@drawable/india_flag"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:layout_gravity="center_vertical"/>-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/india_english"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/shadow_1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:id="@+id/language_hindi_radio_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/hindi"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/shadow_1"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:enabled="true"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/telugu"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/shadow_1"/>
+    </LinearLayout>
+</RelativeLayout>

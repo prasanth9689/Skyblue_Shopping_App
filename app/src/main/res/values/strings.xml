@@ -1,0 +1,256 @@
+<resources>
+    <string name="app_name">Skyblue Shopping</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="nav_header_title" translatable="false">Android Studio</string>
+    <string name="nav_header_subtitle" translatable="false">android.studio@android.com</string>
+    <string name="nav_header_desc" translatable="false">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery" translatable="false">Gallery</string>
+    <string name="menu_slideshow" translatable="false">Slideshow</string>
+    <string name="title_activity_main2" translatable="false">MainActivity2</string>
+
+    <string name="Check_internet_connection">Check internet connection</string>
+
+    <!-- Forget password-->
+    <string name="continue_next">Continue</string>
+    <string name="valid_number_is_required">Valid number is required</string>
+    <string name="account_not_found">Account not found</string>
+    <string name="enter_verification_code">Enter Verification Code</string>
+    <string name="enter_code">Enter code</string>
+    <string name="verify">VERIFY</string>
+    <string name="enter_code___">Enter code…</string>
+    <string name="checking_otp_please_wait">Checking OTP.. Please wait…"</string>
+    <string name="please_enter_correct_otp">Please Enter Correct OTP</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="change_password">Change password</string>
+    <string name="valid_password_required">Valid Password is required</string>
+    <string name="valid_confirm_password_required">Valid Confirm Password is required</string>
+
+    <string name="password_has_been_changed_successfully">PASSWORD HAS BEEN CHANGED SUCCESSFULLY</string>
+
+    <string name="continue_">Continue</string>
+    <string name="already_registered_this_number_try_new_number">Already registered this number! Try new number</string>
+    <string name="enter_code_verificaton">Enter code…</string>
+
+
+    <string name="enter_password">Enter Password</string>
+
+    <string name="next">Next</string>
+    <string name="valid_password_is_required">Valid Password is required</string>
+    <string name="valid_confirm_password_is_required">Valid Confirm Password is required</string>
+    <string name="password_and_confirm_password_dose_not_match">Password  and confirm password does not match</string>
+    <!-- Login activity -->
+    <string name="phone_number">Phone number</string>
+    <string name="password">Password</string>
+    <string name="log_in">Log in</string>
+    <string name="Forgot_your_password_text">Forgot your password?</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="logging_in_please_wait">Logging In.. Please wait…</string>
+    <string name="logging_success_please_wait">Logging In Success.. Please wait…</string>
+    <string name="please_wait_initializing">Please wait initializing…</string>
+    <string name="phone_cannot_be_empty">Phone cannot be empty</string>
+    <string name="password_cannot_be_empty">Password cannot be empty</string>
+    <string name="failed_try_again">Failed! Try again.</string>
+
+
+    <string name="select_date_of_birth">Select Date Of Birth</string>
+    <string name="select_gender">Select Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="select_city">Select city</string>
+    <string name="privacy_one">By clicking Sign Up , you agree to our </string>
+    <string name="privacy_two">Terms , Data</string>
+    <string name="privacy_three">Policy</string>
+    <string name="privacy_four">and</string>
+    <string name="privacy_five"> Cookie Policy</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="please_enter_name">Please Enter Name</string>
+    <string name="please_select_gender">Please select gender</string>
+    <string name="signing_up_please_wait">Signing Up.. Please wait…</string>
+    <string name="create_an_acccount">Create an account</string>
+
+    <!-- State -->
+    <string-array name="array_state">
+        <item>Select</item>
+        <item>TAMIL NADU</item>
+        <item>ANDHRA PRADESH</item>
+        <item>ARUNACHAL PRADESH</item>
+        <item>ASSAM</item>
+        <item>BIHAR</item>
+        <item>CHANDIGARH</item>
+
+        <item>CHHATTISGARH</item>
+        <item>DADRA AND NAGAR HAVELI AND DAMAN AND DIU</item>
+        <item>DELHI</item>
+        <item>GOA</item>
+        <item>GUJARAT</item>
+
+        <item>HARYANA</item>
+        <item>HIMACHAL PRADESH</item>
+        <item>JAMMU &amp; KASHMIR</item>
+        <item>JHARKHAND</item>
+        <item>KARNATAKA</item>
+
+        <item>KERALA</item>
+        <item>LADAKH</item>
+        <item>LAKSHADWEEP</item>
+        <item>MADHYA PRADESH</item>
+        <item>MAHARASHTRA</item>
+
+        <item>MANIPUR</item>
+        <item>MEGHALAYA</item>
+        <item>MIZORAM</item>
+        <item>NAGALAND</item>
+        <item>ODISHA</item>
+
+        <item>PUDUCHERRY</item>
+        <item>PUNJAB</item>
+        <item>RAJASTHAN</item>
+        <item>SIKKIM</item>
+        <item>TAMIL NADU</item>
+
+        <item>TELANGANA</item>
+        <item>TRIPURA</item>
+        <item>UTTAR PRADESH</item>
+        <item>UTTARAKHAND</item>
+        <item>WEST BENGAL</item>
+    </string-array>
+
+    <!-- ImageViewActivity -->
+    <string name="please_wait___">Please wait…</string>
+    <string name="add_to_card" translatable="false">Buy Now</string>
+
+    <!-- Delivery address update -->
+    <string name="saved_success">saved successfully</string>
+
+    <!-- Place the order -->
+    <string name="success">success</string>
+    <string name="rupees_text" translatable="false">\u20A8</string>
+    <string name="rupees_symbol" translatable="false">\u20B9</string>
+    <string name="select">Select</string>
+    <string name="please_select_state">Please select state.</string>
+    <string name="please_enter_area_sector_name">Please Enter Area, Sector Name</string>
+    <string name="please_enter_landmark">Please Enter Landmark</string>
+    <string name="please_enter_pin_code">Please Enter Pin Code</string>
+    <string name="error_please_enter_valid_pin_code">Please Enter Valid Pin Code</string>
+    <string name="please_enter_city_town_name">Please Enter City/Town Name</string>
+    <string name="loading_please_wait">Loading Please Wait</string>
+    <string name="review_image_selected_ok">Review Image selected ok</string>
+    <string name="please_select_review_image">Please select Review Image</string>
+    <string name="loading">Loading</string>
+    <string name="please_wait">Please wait</string>
+    <string name="error_check_internet_connection">Error! Check internet connection</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="bottom_nav_home">Home</string>
+    <string name="bottom_nav_review">Review</string>
+    <string name="bottom_nav_account">Account</string>
+    <string name="bottom_nav_search">Search</string>
+    <string name="search_now">Search now</string>
+    <string name="product">Product</string>
+    <string name="rating_now">RATING NOW</string>
+    <string name="warrenty">WARRENTY</string>
+    <string name="seller">SELLER</string>
+    <string name="guaranteed">GUARANTEED</string>
+    <string name="feature_s_and_specifications">Feature\'s and Specifications</string>
+    <string name="place_the_order">PLACE THE ORDER</string>
+    <string name="rate_now">Rate now</string>
+    <string name="_5_star">5 Star</string>
+    <string name="_4_star">4 Star</string>
+    <string name="_3_star">3 Star</string>
+    <string name="_2_star">2 Star</string>
+    <string name="_1_star">1 Star</string>
+    <string name="cancel">CANCEL</string>
+    <string name="save">SAVE</string>
+    <string name="congratulations">Congratulations</string>
+    <string name="your_order_successfully_placed_you_order_delivery_within_2_or_3_business_days">Your order successfully placed. your order delivery within 2 or 3 business days</string>
+    <string name="back">BACK</string>
+    <string name="placing_the_order_please_wait">Placing the order please wait.</string>
+    <string name="please_don_t_close_the_app_or_don_t_click_back_button">Please don\'t close the app or don\'t click back button</string>
+    <string name="please_check_delivery_address">Please check delivery address</string>
+    <string name="below_mentioned_empty_field">Below mentioned empty field</string>
+    <string name="please_update_your_delivery_address_correctly">Please update your delivery address correctly.</string>
+    <string name="then_place_the_order_thank_you_happy_to_shop">Then place the order. thank you. Happy to shop</string>
+    <string name="close">Close</string>
+    <string name="view">View</string>
+    <string name="review_by_user">Review by user</string>
+    <string name="refresh">Refresh</string>
+    <string name="_1_check_mobile_data_connection">1, Check mobile data connection</string>
+    <string name="_2_check_wifi_connection">2, Check wifi connection</string>
+    <string name="_3_please_turn_on_mobile_data">3, Please turn on mobile data</string>
+    <string name="_4_restart_the_skyblue_shopping_app">4, Restart the skyblue Shopping App</string>
+    <string name="about_us">About us</string>
+    <string name="about_text">Skyblue digital platform development started in 2017. a small team of college students started.</string>
+    <string name="prasanth">Prasanth</string>
+    <string name="founder_and_developer">Founder and Developer</string>
+    <string name="account">Account</string>
+    <string name="delivery_address">Delivery address</string>
+    <string name="order_list">Order list</string>
+    <string name="order_canceled_list">order Canceled list</string>
+    <string name="search_history">SEARCH HISTORY</string>
+    <string name="contact_us">Contact us</string>
+    <string name="ariyalur">Ariyalur</string>
+    <string name="tamil_nadu_india">Tamil nadu, India</string>
+    <string name="pin_code_621_704">Pin code : 621 704</string>
+    <string name="mail_address">Mail address:</string>
+    <string name="edit">Edit</string>
+    <string name="primary_delivery_address">Primary delivery address</string>
+    <string name="pin_code">Pin code :</string>
+    <string name="edit_delivery_address">Edit delivery address</string>
+    <string name="city_town">City/Town</string>
+    <string name="select_state">Select state</string>
+    <string name="all_gategories">All Gategories</string>
+    <string name="all">All</string>
+    <string name="offer_zone">Offer Zone</string>
+    <string name="select_language">Select Language</string>
+    <string name="india_english">English</string>
+    <string name="tamil">Tamil</string>
+    <string name="telugu">Telugu</string>
+    <string name="hindi">Hindi</string>
+    <string name="wish_list">Wish List</string>
+    <string name="complete_registration">Complete Registration</string>
+    <string name="enter_first_name">Enter First Name :</string>
+    <string name="e_g_near_sivan_temple">E.g. near sivan temple</string>
+    <string name="set_password">Set Password</string>
+    <string name="enter_confirm_password">Enter Confirm Password :</string>
+    <string name="post_review">Post Review</string>
+    <string name="upload_review_product_picture">Upload Review Product Picture</string>
+    <string name="enter_review_about_this_product">Enter Review About This Product</string>
+    <string name="enter_review">Enter Review</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="profile">Profile</string>
+    <string name="name">Name</string>
+    <string name="primary_mobile_no">Primary Mobile No</string>
+    <string name="area_street_sector">Area, Street, Sector</string>
+    <string name="state">State</string>
+    <string name="review">Review</string>
+      <string name="settins">Settings</string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="my_orders">My Orders</string>
+    <string name="my_account">My Account</string>
+    <string name="settings">Settings</string>
+    <string name="logout">Logout</string>
+    <string name="error_obj_delivery_user_name">Delivery \' user name \'</string>
+    <string name="error_obj_delivery_area_name">Delivery \' area name \'</string>
+    <string name="error_obj_delivery_land_mark">Delivery \' landmark name \'</string>
+    <string name="error_obj_delivery_pin_code">Delivery \' pin code \'</string>
+    <string name="error_obj_delivery_wrong_pincode">Delivery \' pin code wrong \'</string>
+    <string name="error_obj_delivery_city_name">Delivery \' city name \'</string>
+    <string name="thank_you_so_much_for_rating">Thank you so much! for rating.</string>
+    <string name="landmark">landmark</string>
+    <string name="language_already_selected">Language already selected!</string>
+    <string name="search_brands_smart_phones_headset_cloths">Search Brands, Smart Phones, Headset, Cloths</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="english_language">English</string>
+    <string name="tamil_language">Tamil</string>
+    <string name="hindi_language">Hindi</string>
+    <string name="message">Message</string>
+    <string name="channel_name">chennal</string>
+    <string name="channel_name2">chennal_2</string>
+    <string name="channel_description3">chennal_discription</string>
+    <string name="bottom_nav_orders">Orders</string>
+    <string name="empty_orders">Empty orders</string>
+</resources>

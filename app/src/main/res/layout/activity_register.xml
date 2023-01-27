@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".registration.RegisterActivity">
+
+    <RelativeLayout
+        android:id="@+id/relative_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/check_user_expectation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="100dp"
+            android:textColor="@color/dark_nav"
+            android:fontFamily="@font/open_sans_light"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Phone number"
+            android:textSize="18sp"
+            android:visibility="invisible"
+            tools:visibility="invisible"
+            android:fontFamily="@font/open_sans_light"/>
+
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:background="@drawable/edit_text_border_color_light_blue"
+            android:fontFamily="@font/open_sans_light"
+            app:ccpDialog_keyboardAutoPopup="false"
+            app:ccp_defaultNameCode="IN"
+            app:ccp_showFlag="false" />
+
+        <EditText
+            android:id="@+id/editTextCarrierNumber"
+            style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/ccp"
+            android:background="@drawable/edit_text_border_color_light_blue"
+            android:fontFamily="@font/open_sans_light"
+            android:hint="@string/phone_number"
+            android:textCursorDrawable="@drawable/color_cursor_blue"
+            android:inputType="phone"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2" />
+
+        <Button
+            android:id="@+id/buttonContinue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextCarrierNumber"
+            android:layout_marginTop="10dp"
+            android:background="@color/colorPrimaryBlue"
+            android:fontFamily="@font/open_sans_light"
+            android:text="@string/continue_"
+            android:textColor="#FFFFFF" />
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="345dp"
+            android:layout_height="121dp"
+            android:background="@color/shadow_1"
+            android:orientation="vertical"
+            android:visibility="invisible"
+            tools:visibility="invisible">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:gravity="center_vertical">
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="32dp"
+                android:layout_marginRight="16dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Country"
+                        android:textStyle="bold"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Phone code"
+                        android:textStyle="bold"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="Name Code"
+                        android:textStyle="bold"
+                        android:visibility="invisible" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/textView_countryName"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="_________"
+                        android:textColor="@android:color/black"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/textView_countryCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="_________"
+                        android:textColor="@android:color/black"
+                        android:visibility="invisible" />
+
+                    <TextView
+                        android:id="@+id/textView_countryNameCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_horizontal"
+                        android:text="_________"
+                        android:textColor="@android:color/black"
+                        android:visibility="invisible" />
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/id_get_number_with_plus"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/id_get_number_only"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:id="@+id/save_card_view"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="5dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            app:cardCornerRadius="30dp">-->
+
+<!--            <Button-->
+<!--                android:id="@+id/rating_save_btn"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/colorTopMenu"-->
+<!--                android:text="help"-->
+<!--                android:textColor="@color/colorPrimaryBlue" />-->
+<!--        </androidx.cardview.widget.CardView>-->
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/mobileStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="300dp"
+        android:hint="Mobile Status"
+        android:visibility="invisible"
+        tools:visibility="invisible" />
+
+</FrameLayout>

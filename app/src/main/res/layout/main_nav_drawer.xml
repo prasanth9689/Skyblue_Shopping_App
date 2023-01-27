@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_gradient"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/open_sans_light"
+            android:text="Skyblue online shopping"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+<!--        <ImageView-->
+<!--            android:layout_width="30dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:onClick="ClickLogo"-->
+<!--            android:layout_toRightOf="@+id/name"-->
+<!--            android:src="@drawable/shop_cart_yellow"/>-->
+
+        <Button
+            android:id="@+id/id_login_btn_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_below="@id/name"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/color_bg_blue_radius"
+            android:onClick="ClickLogin"
+            android:text="@string/log_in"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/txt_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginLeft="16dp"
+            android:fontFamily="@font/open_sans_light"
+            android:text="Name:"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/id_user_name_drawer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name"
+            android:layout_marginLeft="5dp"
+            android:textSize="13dp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/open_sans_condensed_bold"
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/txt_username"
+            android:text=""/>
+
+
+
+
+
+    </RelativeLayout>
+
+
+
+     <View
+         android:layout_width="match_parent"
+         android:layout_height="1dp"
+         android:layout_marginTop="16dp"
+         android:layout_marginBottom="16dp"
+         android:background="@color/shadow_1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="ClickAllGategories"
+        android:background="@drawable/button_click_default"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/account_gategories"
+            app:tint="@color/shadow_1" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:fontFamily="@font/open_sans_light"
+            android:padding="12dp"
+            android:text="@string/all_gategories"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="ClickOfferZone"
+        android:background="@drawable/button_click_default"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/account_offer"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Offer zone"
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:layout_marginStart="0dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="ClickSelectLanguage"
+        android:background="@drawable/button_click_default"
+        android:clickable="true"
+        android:focusable="true">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/account_translate"
+            app:tint="@color/shadow_1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:fontFamily="@font/open_sans_light"
+            android:padding="12dp"
+            android:text="@string/select_language"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:onClick="ClickMyOrder"
+        android:background="@drawable/button_click_default"
+        android:clickable="true"
+        android:focusable="true"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:src="@drawable/account_my_order"
+            app:tint="@color/shadow_1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:fontFamily="@font/open_sans_light"
+            android:padding="12dp"
+            android:text="@string/my_orders"
+            android:textColor="@color/white" />
+
+
+    </LinearLayout>
+
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:onClick="ClickMyWishList"-->
+<!--            android:background="@drawable/button_click_default"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:src="@drawable/account_wish_list"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="My Wishlist"-->
+<!--                android:padding="12dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:layout_marginStart="0dp"/>-->
+
+
+<!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="ClickAccount"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true"
+            >
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/account_circle"
+                app:tint="@color/shadow_1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"
+                android:padding="12dp"
+                android:text="@string/my_account"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:background="@drawable/button_click_default"-->
+<!--            android:clickable="true"-->
+<!--            android:focusable="true"-->
+<!--            >-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="30dp"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_marginStart="5dp"-->
+<!--                android:src="@drawable/account_sale"/>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="Sell on Skyblue"-->
+<!--                android:padding="12dp"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:layout_marginStart="0dp"/>-->
+
+
+<!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="ClickSettings"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/account_settings"
+                app:tint="@color/shadow_1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"
+                android:padding="12dp"
+                android:text="@string/settings"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="ClickLogOut"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/account_log_out"
+                app:tint="@color/shadow_1"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"
+                android:padding="12dp"
+                android:text="@string/logout"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Skyblue ecomm private limited"
+        android:textColor="@color/white"
+        android:textSize="10dp" />
+</RelativeLayout>

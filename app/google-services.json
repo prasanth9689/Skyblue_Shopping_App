@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "29318842686",
+    "firebase_url": "https://skyblue-shopping-default-rtdb.firebaseio.com",
+    "project_id": "skyblue-shopping",
+    "storage_bucket": "skyblue-shopping.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:29318842686:android:cd4643a9149dcb6d01c46f",
+        "android_client_info": {
+          "package_name": "com.skyblue.shop"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "29318842686-2b6s58837om3r529o67tss8e6gcp71ei.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.shop",
+            "certificate_hash": "cfa25b53526447bf743af855d39b147085300dce"
+          }
+        },
+        {
+          "client_id": "29318842686-adoofvvf4d3o8gpppe5ddeul8uorlr1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBaD0Gjjj8FvYe-Su9yT6UTBwnWAyMalG8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "29318842686-adoofvvf4d3o8gpppe5ddeul8uorlr1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

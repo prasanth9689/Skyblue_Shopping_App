@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".MobileBrandViewActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_nav_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="false"
+        android:background="@color/colorPrimaryBlue">
+
+
+        <ImageView
+            android:id="@+id/backArrow"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+
+            app:tint="@color/white"
+            android:layout_centerInParent="false"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_white_40" />
+
+        <TextView
+            android:id="@+id/id_smartphone_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toRightOf="@id/backArrow"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:fontFamily="@font/open_sans_light"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

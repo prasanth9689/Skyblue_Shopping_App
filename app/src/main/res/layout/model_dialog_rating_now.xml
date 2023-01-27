@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="@string/rate_now"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/open_sans_light"/>
+
+    <LinearLayout
+        android:id="@+id/rating_star_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="ClickRatingFiveStar"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/rating_star_5_star"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_5_star"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="ClickRatingFourStar"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/rating_star_4_star"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_4_star"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="ClickRatingTwoStar"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/rating_star_3_star"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_3_star"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="ClickRatingThreeStar"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/rating_star_2_star"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_2_star"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:onClick="ClickRatingOneStar"
+            android:background="@drawable/button_click_default"
+            android:clickable="true"
+            android:focusable="true">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/rating_star_1_star"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/_1_star"
+                android:padding="12dp"
+                android:textColor="@color/black"
+                android:layout_marginStart="0dp"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/btn_container"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/rating_star_container">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cancel_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="5dp"
+            android:layout_toStartOf="@id/save_card_view"
+            app:cardCornerRadius="30dp">
+
+            <Button
+                android:id="@+id/rating_cancel_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorTopMenu"
+                android:text="@string/cancel"
+                android:textColor="#F44336"
+                android:fontFamily="@font/open_sans_light"/>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/save_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="30dp">
+
+            <Button
+                android:id="@+id/rating_save_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorTopMenu"
+                android:text="@string/save"
+                android:textColor="@color/colorPrimaryBlue"
+                android:fontFamily="@font/open_sans_light"/>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+<!--    <View-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="10dp"-->
+<!--        android:background="red"-->
+<!--        android:layout_below="@+id/save_card_view"-->
+<!--        />-->
+</RelativeLayout>

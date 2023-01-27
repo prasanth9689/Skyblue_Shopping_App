@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settings.SettingsActivity">
+
+    <RelativeLayout
+        android:id="@+id/top_main"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="false"
+        android:background="@color/skyblue_nav2">
+
+        <ImageView
+            android:id="@+id/settings_activity_back"
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            app:srcCompat="@drawable/ic_baseline_arrow_back_white_40"
+            app:tint="@color/white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/settings_activity_back"
+            android:text="@string/settins"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:fontFamily="@font/open_sans_light"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_below="@id/top_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:paddingBottom="10dp"-->
+<!--            android:onClick="onClickContactUs"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:clickable="true"-->
+<!--            android:background="?android:attr/selectableItemBackground"-->
+<!--            android:focusable="true">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/contact_us"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:fontFamily="@font/open_sans_light"/>-->
+<!--        </LinearLayout>-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:paddingTop="10dp"-->
+<!--            android:paddingBottom="10dp"-->
+<!--            android:onClick="onClickAboutUs"-->
+<!--            android:paddingLeft="10dp"-->
+<!--            android:clickable="true"-->
+<!--            android:background="?android:attr/selectableItemBackground"-->
+<!--            android:focusable="true">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/about_us"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:fontFamily="@font/open_sans_light"/>-->
+<!--        </LinearLayout>-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top_nav"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:onClick="onClickPrivacyPolicy"
+            android:paddingLeft="10dp"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:focusable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/privacy_policy"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/top_nav"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:onClick="onClickTermsAndConditions"
+            android:paddingLeft="10dp"
+            android:clickable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:focusable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_and_conditions"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:fontFamily="@font/open_sans_light"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>
