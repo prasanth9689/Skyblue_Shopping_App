@@ -36,160 +36,6 @@
 
     </RelativeLayout>
 
-
-    <TextView
-        android:id="@+id/id_date_txt_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="date"
-        android:textSize="24sp"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/id_time_txt_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/id_date_view"
-        android:hint="time"
-        android:textSize="24sp"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/id_time_zone_txt_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/id_time_txt_view"
-        android:hint="time zone"
-        android:textSize="24sp"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/id_date_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="date"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/id_gender_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/id_gender_text_view"
-        android:hint="gender id"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/id_gender_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/id_date_view"
-        android:hint="gender"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/register_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_centerHorizontal="true"
-        android:hint="Register Status"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/register_status_expectaion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/register_status"
-        android:layout_centerHorizontal="true"
-        android:hint="Register Status Expectation"
-        android:visibility="invisible" />
-
-    <RelativeLayout
-        android:id="@+id/id_temp"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="false"
-        android:background="@drawable/edit_text_border_color_primary"
-        android:visibility="invisible"
-        tools:visibility="invisible">
-
-        <TextView
-            android:id="@+id/id_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="false"
-            android:fontFamily="@font/open_sans_light"/>
-
-        <TextView
-            android:id="@+id/id_phone_number"
-            android:layout_width="112dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/id_phone_code_view"
-            tools:layout_editor_absoluteX="139dp"
-            tools:layout_editor_absoluteY="177dp"
-            android:fontFamily="@font/open_sans_light"/>
-
-        <TextView
-            android:id="@+id/id_confirm_password"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/id_password"
-            android:layout_centerHorizontal="false"
-            android:fontFamily="@font/open_sans_light"/>
-
-
-        <TextView
-            android:id="@+id/id_number_only_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/id_confirm_password"
-            android:layout_centerHorizontal="false"
-            android:fontFamily="@font/open_sans_light"/>
-
-        <TextView
-            android:id="@+id/id_country_name_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/id_number_only_view"
-            android:layout_centerHorizontal="false"
-            android:fontFamily="@font/open_sans_light"/>
-
-        <TextView
-            android:id="@+id/id_country_code_name_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/id_country_name_view"
-            android:layout_centerHorizontal="false"
-            android:fontFamily="@font/open_sans_light"/>
-
-        <TextView
-            android:id="@+id/id_phone_code_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/id_country_code_name_view"
-            android:layout_centerHorizontal="false"
-            android:fontFamily="@font/open_sans_light"/>
-
-    </RelativeLayout>
-
-    <TextView
-        android:id="@+id/firebase_token"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/id_time_zone_txt_view"
-        android:layout_marginLeft="10dp"
-        android:hint="firebase token"
-        android:textColor="#AA0000"
-        android:textColorHint="#A50000"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -198,7 +44,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/hint_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -208,7 +53,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/ideditTextName"
+            android:id="@+id/name"
             style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -236,7 +81,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/id_area"
+            android:id="@+id/area"
             style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -261,7 +106,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/id_landmark"
+            android:id="@+id/landmark"
             style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -286,7 +131,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/id_pin_code"
+            android:id="@+id/pin_code"
             style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -311,7 +156,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/id_city"
+            android:id="@+id/city"
             style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -336,7 +181,7 @@
             android:textStyle="bold" />
 
         <Spinner
-            android:id="@+id/id_spinner_state"
+            android:id="@+id/spinner_state"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginLeft="10dp"
@@ -416,7 +261,7 @@
     </RelativeLayout>
 
     <Button
-        android:id="@+id/buttonNameNext3"
+        android:id="@+id/create_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

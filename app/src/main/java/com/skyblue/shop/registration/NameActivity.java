@@ -29,6 +29,10 @@ import com.skyblue.shop.Home;
 import com.skyblue.shop.PrivacyPolicyActivity;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
+import com.skyblue.shop.databinding.ActivityNameBinding;
+import com.skyblue.shop.model.Registration;
+import com.skyblue.shop.retrofit.APIClient;
+import com.skyblue.shop.retrofit.APIInterface;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,33 +44,30 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class NameActivity extends AppCompatActivity {
    private SessionHandler session;
-
-    private String mobile_ccode , password , name , mobile , country , country_name_code , phone_code;
+   private ActivityNameBinding binding;
+    private String mName , mDate , mTime, mTimeZone, mDateTimeZone, mFirebaseToken;
     private String spinnerDateHolder , spinnerMonthHolder , spinnerYearHolder , getDate;
-    private String dateHolder , timeHolder, timeZoneHolder, dateTimeZoneHolder;
-    private String GenderIdStringHolder , GenderStringHolder , firebaseTokenHolder;
     private String currentDateString , currentTimeString , currentTimeZoneString;
-    private String TempStatus = "1";
-    private ProgressDialog pDialog;
-    private TextView   dateTextView , GenderIdTextView , Gender , TermsAndData;
-    private TextView dateText , timeText , timeZoneText , firebaseToken;
-    RelativeLayout relativeLayoutPrivacy;
-    Button register;
+    String mArea , mLandmark, mCity, mState , mPinCode;
     private ProgressDialog progressDialog;
-    String area , landmark, city, state , pincode;
-    private EditText editTextName , editTextArea , editTextLandmark , editTextPinCode, editTextCity;
-    Spinner spinnerState;
+    APIInterface apiInterface;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_name);
+        binding = ActivityNameBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         session = new SessionHandler(getApplicationContext());
+        apiInterface = APIClient.getClient().create(APIInterface.class);
 
-        initializeVariable();
         initSpinnerState();
         genarateFirebaseToken();
         setOnClickListener();
@@ -74,66 +75,55 @@ public class NameActivity extends AppCompatActivity {
         currentDateString = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         currentTimeString = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         currentTimeZoneString = new SimpleDateFormat("z", Locale.getDefault()).format(new Date());
-
-        dateText.setText(currentDateString);
-        timeText.setText(currentTimeString);
-        timeZoneText.setText(currentTimeZoneString);
     }
 
     private void setOnClickListener() {
-        relativeLayoutPrivacy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NameActivity.this, PrivacyPolicyActivity.class);
-                startActivity(intent);
-            }
+        binding.relativeLayoutPrivacy.setOnClickListener((View.OnClickListener) v -> {
+            Intent intent = new Intent(NameActivity.this, PrivacyPolicyActivity.class);
+            startActivity(intent);
         });
 
-        register.setOnClickListener(new View.OnClickListener() {
+        binding.createBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name = editTextName.getText().toString().trim();
-                area = editTextArea.getText().toString();
-                landmark = editTextLandmark.getText().toString();
-                pincode = editTextPinCode.getText().toString();
-                city = editTextCity.getText().toString();
-                state = spinnerState.getSelectedItem().toString();
-                dateTextView.setText(String.format("%s/%s/%s", spinnerDateHolder, spinnerMonthHolder, spinnerYearHolder));
-                getDate = dateTextView.getText().toString().trim();
-                dateHolder = dateText.getText().toString().trim();
-                timeHolder = timeText.getText().toString().trim();
-                timeZoneHolder = timeZoneText.getText().toString().trim();
-                dateTimeZoneHolder = dateHolder +" "+ timeHolder +" "+ timeZoneHolder;
-                firebaseTokenHolder = firebaseToken.getText().toString().trim();
+                mName = binding.name.getText().toString().trim();
+                mArea = binding.area.getText().toString();
+                mLandmark = binding.landmark.getText().toString();
+                mPinCode = binding.pinCode.getText().toString();
+                mCity = binding.city.getText().toString();
+                mCity = binding.spinnerState.getSelectedItem().toString();
+                String dateHolderFinal = String.format("%s/%s/%s", spinnerDateHolder, spinnerMonthHolder, spinnerYearHolder);
 
-                if (name.isEmpty() || name.length() < 2) {
-                    editTextName.setError(getResources().getString(R.string.please_enter_name));
-                    editTextName.requestFocus();
+                mDateTimeZone = mDate +" "+ mTime +" "+ mTimeZone;
+
+                if (mName.isEmpty() || mName.length() < 2) {
+                    binding.name.setError(getResources().getString(R.string.please_enter_name));
+                    binding.name.requestFocus();
                     return;
-                }if ((area.isEmpty() || area.length() < 2))
+                }if ((mArea.isEmpty() || mArea.length() < 2))
                 {
-                    editTextArea.setError(getResources().getString(R.string.please_enter_area_sector_name));
-                    editTextArea.requestFocus();
+                    binding.area.setError(getResources().getString(R.string.please_enter_area_sector_name));
+                    binding.area.requestFocus();
                     return;
-                }if ((landmark.isEmpty() || landmark.length() < 2))
+                }if ((mLandmark.isEmpty() || mLandmark.length() < 2))
                 {
-                    editTextLandmark.setError(getResources().getString(R.string.please_enter_landmark));
-                    editTextLandmark.requestFocus();
+                    binding.landmark.setError(getResources().getString(R.string.please_enter_landmark));
+                    binding.landmark.requestFocus();
                     return;
-                }if ((pincode.isEmpty()))
+                }if ((mPinCode.isEmpty()))
                 {
-                    editTextPinCode.setError(getResources().getString(R.string.please_enter_pin_code));
-                    editTextPinCode.requestFocus();
+                    binding.pinCode.setError(getResources().getString(R.string.please_enter_pin_code));
+                    binding.pinCode.requestFocus();
                     return;
-                }if (( pincode.length() < 2))
+                }if (( mPinCode.length() < 2))
                 {
-                    editTextPinCode.setError(getResources().getString(R.string.error_please_enter_valid_pin_code));
-                    editTextPinCode.requestFocus();
+                    binding.pinCode.setError(getResources().getString(R.string.error_please_enter_valid_pin_code));
+                    binding.pinCode.requestFocus();
                     return;
                 }
-                if (city.isEmpty() || city.length() < 2) {
-                    editTextCity.setError(getResources().getString(R.string.please_enter_city_town_name));
-                    editTextCity.requestFocus();
+                if (mCity.isEmpty() || mCity.length() < 2) {
+                    binding.city.setError(getResources().getString(R.string.please_enter_city_town_name));
+                    binding.city.requestFocus();
                 }else{
                     Signup();
                 }
@@ -149,8 +139,7 @@ public class NameActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if(task.isSuccessful())
                         {
-                            Log.d("TOKEN_UPDATE", Objects.requireNonNull(task.getResult()).getToken());
-                            firebaseToken.setText(task.getResult().getToken());
+                            mFirebaseToken = task.getResult().getToken();
                         }
                     }
                 });
@@ -160,42 +149,58 @@ public class NameActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.array_state, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinnerState.setAdapter(adapter);
-    }
-
-    private void initializeVariable() {
-        editTextName = findViewById(R.id.ideditTextName);
-        editTextArea = findViewById(R.id.id_area);
-        editTextLandmark = findViewById(R.id.id_landmark);
-        editTextCity = findViewById(R.id.id_city);
-        editTextPinCode = findViewById(R.id.id_pin_code);
-        spinnerState = findViewById(R.id.id_spinner_state);
-        register = findViewById(R.id.buttonNameNext3);
-        dateTextView =  findViewById(R.id.id_date_view);
-        relativeLayoutPrivacy = findViewById(R.id.relativeLayoutPrivacy);
-        TermsAndData = findViewById(R.id.text_two);
-        dateText = findViewById(R.id.id_date_txt_view);
-        timeText = findViewById(R.id.id_time_txt_view);
-        timeZoneText = findViewById(R.id.id_time_zone_txt_view);
-        firebaseToken = findViewById(R.id.firebase_token);
+        binding.spinnerState.setAdapter(adapter);
     }
 
     private void Signup() {
-
         this.progressDialog = new ProgressDialog(NameActivity.this, R.style.AppCompatAlertDialogStyle);
         this.progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         this.progressDialog.setCancelable(false);
         this.progressDialog.setMessage(getResources().getString(R.string.please_wait___));
         this.progressDialog.show();
 
-        String nameHolder = editTextName.getText().toString().trim();
-        String mobileHolder = getIntent().getStringExtra("phonenumber");
-        String mobileNumberOnlyHolder = getIntent().getStringExtra("phonenumberonly");
-        String countryNameHolder = getIntent().getStringExtra("countryname");
-        String countryNameCodeHolder = getIntent().getStringExtra("countrynamecode");
-        String phoneCodeHolder = getIntent().getStringExtra("phonecode");
-        String passwordHolder =  getIntent().getStringExtra("passwordkey");
-        String dobHolder =   String.format("%s/%s/%s", spinnerDateHolder, spinnerMonthHolder, spinnerYearHolder);
+
+        //-------------------------------------------------------------------------------------------------------
+
+
+
+        //-------------------------------------------------------------------------------------------------------
+
+        String mName = binding.name.getText().toString().trim();
+        String mMobile = getIntent().getStringExtra("phonenumber");
+        String mMobileNumberOnly = getIntent().getStringExtra("phonenumberonly");
+        String mCountryName = getIntent().getStringExtra("countryname");
+        String mCountryNameCode = getIntent().getStringExtra("countrynamecode");
+        String mPhoneCode = getIntent().getStringExtra("phonecode");
+        String mPassword =  getIntent().getStringExtra("passwordkey");
+        String mDob =   String.format("%s/%s/%s", spinnerDateHolder, spinnerMonthHolder, spinnerYearHolder);
+
+        Call<Registration> call = apiInterface.createNewRegister(mName,
+                mMobile,
+                mPassword,
+                mMobileNumberOnly ,
+                mArea,
+                mLandmark,
+                mPinCode,
+                mCity,
+                mState,
+                mDate,
+                mTime,
+                mTimeZone,
+                mDateTimeZone,
+                mFirebaseToken);
+
+        call.enqueue(new Callback<Registration>() {
+            @Override
+            public void onResponse(Call<Registration> call, Response<Registration> response) {
+                progressDialog.dismiss();
+            }
+
+            @Override
+            public void onFailure(Call<Registration> call, Throwable t) {
+
+            }
+        });
 
         AndroidNetworking.post(AppConstants.REGISTER_URL)
                 .addBodyParameter("name", nameHolder)
