@@ -4,7 +4,6 @@ public class AppConstants {
 
     public static final String HOME_GET_PRODUCTS = "https://majesticndt.com/prasanth/online_shopping/home_products_get.php";
     public static final String REGISTER_CHECK_USER = "https://majesticndt.com/prasanth/online_shopping/check_user.php";
-    public static final String REGISTER_URL = "https://majesticndt.com/prasanth/online_shopping/register.php";
     public static final String LOGIN_URL = "https://majesticndt.com/prasanth/online_shopping/login.php";
     public static final String UPDATE_DELIVERY_ADDRESS = "https://majesticndt.com/prasanth/online_shopping/update_address.php";
     public static final String PLACING_THE_ORDER = "https://majesticndt.com/prasanth/online_shopping/place_the_order.php";

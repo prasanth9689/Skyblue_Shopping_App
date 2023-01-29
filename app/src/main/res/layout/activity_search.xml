@@ -70,7 +70,7 @@
                 android:textColorHint="#C46D6D6D"
                 android:textColorLink="#00BCD4"
                 android:textSize="15dp"
-                android:textCursorDrawable="@drawable/color_cursor_blue"
+                android:textCursorDrawable="@drawable/color_cursor_primary"
                 android:fontFamily="@font/open_sans_condensed_bold"/>
 
             <ImageView

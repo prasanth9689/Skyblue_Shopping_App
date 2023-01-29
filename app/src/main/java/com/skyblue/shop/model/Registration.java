@@ -2,11 +2,21 @@ package com.skyblue.shop.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class Registration {
     // response
-    @SerializedName("BofdNo")
-    public String BofdNo;
 
+    public class Data {
+        @SerializedName("user_id")
+        public String user_id;
+    }
+
+    @SerializedName("data")
+    public List<Data> data = null;
+
+    @SerializedName("user_id")
+    public String user_id;
 
     // request
     @SerializedName("name")

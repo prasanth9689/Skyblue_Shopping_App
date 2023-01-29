@@ -13,7 +13,7 @@ import retrofit2.http.Part;
 
 public interface APIInterface {
     @FormUrlEncoded
-    @POST("/api/values/UserRegister")
+    @POST("/prasanth/online_shopping/register.php")
     Call<Registration> createNewRegister(@Field("name") String name,
                                          @Field("mobile") String mobile ,
                                          @Field("password") String password,

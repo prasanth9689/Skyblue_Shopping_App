@@ -41,6 +41,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/top_nav_main"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="0dp"
         android:orientation="vertical">
 
         <TextView
@@ -68,7 +69,7 @@
             android:textColor="@color/black"
             android:textColorHighlight="@color/black"
             android:textColorLink="@color/black"
-            android:textCursorDrawable="@drawable/color_cursor_blue"
+            android:textCursorDrawable="@drawable/color_cursor_primary"
             android:textStyle="bold" />
 
         <TextView
@@ -93,7 +94,7 @@
             android:hint=""
             android:inputType="textPersonName"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textCursorDrawable="@drawable/color_cursor_blue"
+            android:textCursorDrawable="@drawable/color_cursor_primary"
             android:textStyle="bold" />
 
         <TextView
@@ -118,7 +119,7 @@
             android:hint="@string/e_g_near_sivan_temple"
             android:inputType="textPersonName"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textCursorDrawable="@drawable/color_cursor_blue"
+            android:textCursorDrawable="@drawable/color_cursor_primary"
             android:textStyle="bold" />
 
         <TextView
@@ -143,7 +144,7 @@
             android:hint=""
             android:inputType="phone"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textCursorDrawable="@drawable/color_cursor_blue"
+            android:textCursorDrawable="@drawable/color_cursor_primary"
             android:textStyle="bold" />
 
         <TextView
@@ -168,7 +169,7 @@
             android:hint=""
             android:inputType="textPersonName"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-            android:textCursorDrawable="@drawable/color_cursor_blue"
+            android:textCursorDrawable="@drawable/color_cursor_primary"
             android:textStyle="bold" />
 
         <TextView

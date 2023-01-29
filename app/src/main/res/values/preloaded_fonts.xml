@@ -4,6 +4,8 @@
         <item>@font/open_sans</item>
         <item>@font/open_sans_condensed_bold</item>
         <item>@font/open_sans_light</item>
+        <item>@font/poppins_light</item>
+        <item>@font/poppins_semibold</item>
         <item>@font/varela_round</item>
     </array>
 </resources>
