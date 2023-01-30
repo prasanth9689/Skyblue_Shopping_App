@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E2F0F6"
-    tools:context=".PostReviewActivity">
+    tools:context=".activity.PostReviewActivity">
     <RelativeLayout
         android:id="@+id/top_app_bar"
         android:layout_width="match_parent"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".registration.VerifyPhoneActivity">
+    tools:context=".activity.registration.VerifyPhoneActivity">
 
     <RelativeLayout
         android:id="@+id/top_nav"
@@ -53,7 +53,7 @@
             android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/editTextCode"
+            android:id="@+id/otp_code"
             style="@style/Widget.MaterialComponents.AutoCompleteTextView.OutlinedBox"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
@@ -73,10 +73,10 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/buttonSignIn"
+            android:id="@+id/verify_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/editTextCode"
+            android:layout_below="@id/otp_code"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
@@ -92,12 +92,10 @@
             android:id="@+id/progressbar"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_below="@id/buttonSignIn"
+            android:layout_below="@id/verify_btn"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="13dp"
             android:indeterminateDrawable="@drawable/progrress_bar_circle_custom"
             android:visibility="gone" />
-
     </RelativeLayout>
-
 </RelativeLayout>

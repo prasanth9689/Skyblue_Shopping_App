@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".product_view.ProductViewActivity"
+    tools:context=".activity.product_view.ProductViewActivity"
     android:background="@color/white">
     <RelativeLayout
         android:id="@+id/top_nav"

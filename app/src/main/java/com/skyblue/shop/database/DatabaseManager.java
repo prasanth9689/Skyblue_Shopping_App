@@ -5,7 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.skyblue.shop.Products;
+import com.skyblue.shop.model.Products;
 
 import java.util.ArrayList;
 

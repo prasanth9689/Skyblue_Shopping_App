@@ -3,6 +3,8 @@ package com.skyblue.shop;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.skyblue.shop.model.User;
+
 import java.util.Date;
 
 public class SessionHandler {

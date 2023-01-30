@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center_horizontal"
     android:background="@color/white"
-    tools:context=".registration.RegisterActivity">
+    tools:context=".activity.registration.RegisterActivity">
 
         <RelativeLayout
             android:id="@+id/relative_main"
