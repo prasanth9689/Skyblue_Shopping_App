@@ -1,5 +1,6 @@
 package com.skyblue.shop.retrofit;
 
+import com.skyblue.shop.model.Login;
 import com.skyblue.shop.model.Registration;
 
 import okhttp3.MultipartBody;
@@ -28,4 +29,10 @@ public interface APIInterface {
                                          @Field("time_zone") String time_zone,
                                          @Field("date_time_zone") String date_time_zone,
                                          @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("/prasanth/online_shopping/login.php")
+    Call<Login> login(@Field("mobile") String name,
+                     @Field("password") String password,
+                     @Field("token") String token);
 }

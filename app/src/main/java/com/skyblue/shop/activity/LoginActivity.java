@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -34,9 +33,15 @@ import com.google.firebase.iid.InstanceIdResult;
 import com.skyblue.shop.AppConstants;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
+import com.skyblue.shop.activity.registration.RegistrationHandler;
+import com.skyblue.shop.databinding.ActivityLoginBinding;
+import com.skyblue.shop.model.Login;
+import com.skyblue.shop.model.RegistrationSpModel;
 import com.skyblue.shop.model.User;
 import com.skyblue.shop.Utils;
 import com.skyblue.shop.activity.registration.RegisterActivity;
+import com.skyblue.shop.retrofit.APIClient;
+import com.skyblue.shop.retrofit.APIInterface;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,48 +51,55 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity {
+    private ActivityLoginBinding binding;
+    private SessionHandler mSession;
+    private RegistrationHandler mRegisterSession;
     private static final String KEY_EMPTY = "";
-    private EditText etMobile;
-    private EditText etPassword;
-    private String name , mobile , password , tokenHolder , mobileNumber;
-    private ProgressDialog pDialog;
-    private SessionHandler session;
-    TextView ForgetPassword , tokenTxt;
-    ImageView backButton;
-    private ProgressDialog progressDialog;
-    Context context = this;
-    Button createAccountBtn , btnLogin;
-    User user;
-    private static final int KEY_STATUS = 1;
+    private String mName , mMobile , mPassword , mFirebaseToken , mMobileNumber;
+    private ProgressDialog mProgressDialog;
+    private APIInterface mApiInterface;
+    private Context mContext = this;
+    private User user;
+    private RegistrationSpModel mRegistrationSpModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_login);
+        FULL_SCREEN_REQUEST();
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        session = new SessionHandler(getApplicationContext());
+        mSession = new SessionHandler(getApplicationContext());
+        mRegisterSession = new RegistrationHandler(getApplicationContext());
+        mRegistrationSpModel = mRegisterSession.getRegisterData();
 
-        if(session.isLoggedIn()){
+        mApiInterface = APIClient.getClient().create(APIInterface.class);
+
+        if(mSession.isLoggedIn()){
             loadHome();
         }
 
-        initializeVariable();
         setOnClickListener();
         genarateFirabaseToken();
 
-        mobileNumber = getIntent().getStringExtra("mobile");
-        etMobile.setText(mobileNumber);
+        mMobile = mRegistrationSpModel.getMobile();
+        binding.etMobile.setText(mMobile);
 
-        createAccountBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, RegisterActivity.class);
-                startActivity(intent);
-            }
+        binding.createBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(mContext, RegisterActivity.class);
+            startActivity(intent);
         });
+    }
+
+    private void FULL_SCREEN_REQUEST() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
     }
 
     private void genarateFirabaseToken() {
@@ -98,45 +110,25 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if(task.isSuccessful())
                         {
-                            Log.d("TOKEN_UPDATE",task.getResult().getToken());
-                            tokenTxt.setText(task.getResult().getToken());
+                            mFirebaseToken = task.getResult().getToken();
                         }
                     }
                 });
     }
 
     private void setOnClickListener() {
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mobile = etMobile.getText().toString().toLowerCase().trim();
-                password = etPassword.getText().toString().trim();
-                tokenHolder = tokenTxt.getText().toString().trim();
-                if (validateInputs()) {
-                    InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
-                    login();
-                }
+        binding.loginBtn.setOnClickListener(view -> {
+            mMobile = binding.etMobile.getText().toString().toLowerCase().trim();
+            mPassword = binding.etPassword.getText().toString().trim();
+            if (validateInputs()) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+                login();
             }
         });
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
+        binding.idBack.setOnClickListener(v -> finish());
     }
-
-        private void initializeVariable () {
-            etMobile = findViewById(R.id.etMobile);
-            etPassword = findViewById(R.id.etPassword);
-            btnLogin = findViewById(R.id.btLogin);
-            tokenTxt = findViewById(R.id.firebase_token2);
-            backButton = findViewById(R.id.id_back);
-            createAccountBtn = findViewById(R.id.create_an_account_btn);
-        }
 
         private void loadHome () {
             Intent i = new Intent(getApplicationContext(), Home.class);
@@ -144,138 +136,133 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
         private void displayLoader () {
-            pDialog = new ProgressDialog(LoginActivity.this, R.style.AppCompatAlertDialogStyle);
-            pDialog.setMessage(getResources().getString(R.string.logging_in_please_wait));
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        private void displayLoaderRegisterToken () {
-            pDialog = new ProgressDialog(LoginActivity.this, R.style.AppCompatAlertDialogStyle);
-            pDialog.setMessage(getResources().getString(R.string.logging_success_please_wait));
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
+            mProgressDialog = new ProgressDialog(LoginActivity.this, R.style.AppCompatAlertDialogStyle);
+            mProgressDialog.setMessage(getResources().getString(R.string.logging_in_please_wait));
+            mProgressDialog.setIndeterminate(false);
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.show();
         }
 
         private void login () {
             displayLoader();
 
-            StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.LOGIN_URL,
-                    new Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            pDialog.dismiss();
-              //              Utils.showMessage(context, response);
-                                                        try {
+            Call<Login> call = mApiInterface.login(
+                    mMobile,
+                    mPassword,
+                    mFirebaseToken
+            );
 
-          JSONObject jsonObject = new JSONObject(response);
-
-        if (jsonObject.optString("status").equals("true"))
-        {
-            //  Utils.showMessage(context, "Step 1");
-            ArrayList<CurrentUser> CurrentUserArrayList = new ArrayList<>();
-
-            JSONArray jsonArrayst = jsonObject.getJSONArray("data");
-
-            for (int i = 0; i < jsonArrayst.length(); i++)
-            {
-                CurrentUser CurrentUserDetails = new CurrentUser();
-                JSONObject dataobjst = jsonArrayst.getJSONObject(i);
-
-                CurrentUserDetails.setId(dataobjst.getString("id"));
-                CurrentUserDetails.setName(dataobjst.getString("name"));
-                CurrentUserDetails.setMessage(dataobjst.getString("message"));
-                CurrentUserDetails.setArea(dataobjst.getString("area"));
-                CurrentUserDetails.setLandmark(dataobjst.getString("landmark"));
-                CurrentUserDetails.setCity(dataobjst.getString("city"));
-                CurrentUserDetails.setPin_code(dataobjst.getString("pin_code"));
-                CurrentUserDetails.setState(dataobjst.getString("state"));
-
-                CurrentUserArrayList.add(CurrentUserDetails);
-            }
-            for (int j = 0; j < CurrentUserArrayList.size(); j++) {
-
-             //   Utils.showMessage(context, String.valueOf(CurrentUserArrayList.get(j).getMessage()));
-
-                switch (Integer.parseInt(CurrentUserArrayList.get(j).getMessage())) {
-
-                    case 1:
-                        Utils.showMessage(context, "Check Username And Password!");
-                        break;
-
-                    case 2:
-                        Utils.showMessage(context, "Account not found!");
-                        break;
-
-                    case 3:
-                        Utils.showMessageInSnackbar(context, "Please Enter Empty Field");
-                        break;
-
-                    case 4:
-
-                        //   Utils.showMessageInSnackbar(context, "success");
-
-                        String userId = CurrentUserArrayList.get(j).getId();
-                        String userName = CurrentUserArrayList.get(j).getName();
-                        String userArea = CurrentUserArrayList.get(j).getArea();
-                        String userLandmark = CurrentUserArrayList.get(j).getLandmark();
-                        String userCity = CurrentUserArrayList.get(j).getCity();
-                        String userPinCode = CurrentUserArrayList.get(j).getPin_code();
-                        String userState = CurrentUserArrayList.get(j).getState();
-
-                        Toast.makeText(context,"success",Toast.LENGTH_SHORT).show();
-
-                        session.loginUser(userId ,mobile, userName , userArea , userLandmark , userPinCode , userCity , userState);
-
-                        Intent intent = new Intent(context, Home.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        startActivity(intent);
-                        break;
-
-                    default:
-                        Utils.showMessageInSnackbar(context, "SERVER ERROR!");
-                        break;
-                }
-                pDialog.dismiss();
-            }
-        } else {
-            //      Toast.makeText(HomeHomeFragmentActivity.this.getActivity().getApplicationContext(), jsonObjectluser.optString("message") + "", Toast.LENGTH_SHORT).show();
-        }
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }
-
-                        }
-                    },
-                    new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError volleyError) {
-                            pDialog.dismiss();
-                            showMessageInSnackbar(getString(R.string.error_check_internet_connection));
-                        }
-                    }) {
+            call.enqueue(new Callback<Login>() {
                 @Override
-                protected Map<String, String> getParams() {
+                public void onResponse(Call<Login> call, Response<Login> response) {
 
-                    // Creating Map String Params.
-                    Map<String, String> params = new HashMap<String, String>();
-
-                    // Adding All values to Params.
-                    params.put("mobile", mobile);
-                    params.put("password", password);
-                    params.put("token", tokenHolder);
-
-                    return params;
                 }
-            };
 
-            // Creating RequestQueue.
-            RequestQueue requestQueue = Volley.newRequestQueue(context);
+                @Override
+                public void onFailure(Call<Login> call, Throwable t) {
 
-            // Adding the StringRequest object into requestQueue.
-            requestQueue.add(stringRequest);
+                }
+            });
+//
+//            StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.LOGIN_URL,
+//                    response -> {
+//                        mProgressDialog.dismiss();
+//                        try {
+//
+//                           JSONObject jsonObject = new JSONObject(response);
+//
+//    if (jsonObject.optString("status").equals("true"))
+//    {
+//        ArrayList<CurrentUser> CurrentUserArrayList = new ArrayList<>();
+//
+//        JSONArray jsonArrayst = jsonObject.getJSONArray("data");
+//
+//        for (int i = 0; i < jsonArrayst.length(); i++)
+//        {
+//            CurrentUser CurrentUserDetails = new CurrentUser();
+//            JSONObject dataobjst = jsonArrayst.getJSONObject(i);
+//
+//            CurrentUserDetails.setId(dataobjst.getString("id"));
+//            CurrentUserDetails.setName(dataobjst.getString("name"));
+//            CurrentUserDetails.setMessage(dataobjst.getString("message"));
+//            CurrentUserDetails.setArea(dataobjst.getString("area"));
+//            CurrentUserDetails.setLandmark(dataobjst.getString("landmark"));
+//            CurrentUserDetails.setCity(dataobjst.getString("city"));
+//            CurrentUserDetails.setPin_code(dataobjst.getString("pin_code"));
+//            CurrentUserDetails.setState(dataobjst.getString("state"));
+//
+//            CurrentUserArrayList.add(CurrentUserDetails);
+//        }
+//        for (int j = 0; j < CurrentUserArrayList.size(); j++) {
+//
+//            switch (Integer.parseInt(CurrentUserArrayList.get(j).getMessage())) {
+//
+//                case 1:
+//                    Utils.showMessage(context, "Check Username And Password!");
+//                    break;
+//
+//                case 2:
+//                    Utils.showMessage(context, "Account not found!");
+//                    break;
+//
+//                case 3:
+//                    Utils.showMessageInSnackbar(context, "Please Enter Empty Field");
+//                    break;
+//
+//                case 4:
+//
+//                    String userId = CurrentUserArrayList.get(j).getId();
+//                    String userName = CurrentUserArrayList.get(j).getName();
+//                    String userArea = CurrentUserArrayList.get(j).getArea();
+//                    String userLandmark = CurrentUserArrayList.get(j).getLandmark();
+//                    String userCity = CurrentUserArrayList.get(j).getCity();
+//                    String userPinCode = CurrentUserArrayList.get(j).getPin_code();
+//                    String userState = CurrentUserArrayList.get(j).getState();
+//
+//                    Toast.makeText(context,"success",Toast.LENGTH_SHORT).show();
+//
+//                    mSession.loginUser(userId ,mMobile, userName , userArea , userLandmark , userPinCode , userCity , userState);
+//
+//                    Intent intent = new Intent(context, Home.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                    startActivity(intent);
+//                    break;
+//
+//                default:
+//                    Utils.showMessageInSnackbar(context, "SERVER ERROR!");
+//                    break;
+//            }
+//            mProgressDialog.dismiss();
+//        }
+//    } else {
+//        //      Toast.makeText(HomeHomeFragmentActivity.this.getActivity().getApplicationContext(), jsonObjectluser.optString("message") + "", Toast.LENGTH_SHORT).show();
+//    }
+//} catch (JSONException e) {
+//    e.printStackTrace();
+//}
+//
+//                    },
+//                    volleyError -> {
+//                        mProgressDialog.dismiss();
+//                        showMessageInSnackbar(getString(R.string.error_check_internet_connection));
+//                    }) {
+//                @Override
+//                protected Map<String, String> getParams() {
+//
+//                    // Creating Map String Params.
+//                    Map<String, String> params = new HashMap<String, String>();
+//
+//                    // Adding All values to Params.
+//                    params.put("mobile", mMobile);
+//                    params.put("password", mPassword);
+//                    params.put("token", mFirebaseToken);
+//
+//                    return params;
+//                }
+//            };
+//
+//            RequestQueue requestQueue = Volley.newRequestQueue(context);
+//            requestQueue.add(stringRequest);
 }
 
         /**
@@ -283,103 +270,32 @@ public class LoginActivity extends AppCompatActivity {
          * @return
          */
         private boolean validateInputs () {
-            if (KEY_EMPTY.equals(mobile)) {
-                etMobile.setError(getResources().getString(R.string.phone_cannot_be_empty));
-                etMobile.requestFocus();
+            if (KEY_EMPTY.equals(mMobile)) {
+                binding.etMobile.setError(getResources().getString(R.string.phone_cannot_be_empty));
+                binding.etMobile.requestFocus();
                 return false;
             }
-            if (KEY_EMPTY.equals(password)) {
-                etPassword.setError(getResources().getString(R.string.password_cannot_be_empty));
-                etPassword.requestFocus();
+            if (KEY_EMPTY.equals(mPassword)) {
+                binding.etPassword.setError(getResources().getString(R.string.password_cannot_be_empty));
+                binding.etPassword.requestFocus();
                 return false;
             }
             return true;
         }
 
-        static class CurrentUser {
-            private String id, name, area, landmark, pin_code, city, state , message;
-
-            public String getId() {
-                return id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public String getArea() {
-                return area;
-            }
-
-            public String getLandmark() {
-                return landmark;
-            }
-
-            public String getPin_code() {
-                return pin_code;
-            }
-
-            public String getCity() {
-                return city;
-            }
-
-            public String getState() {
-                return state;
-            }
-
-            public String getMessage() {
-                return message;
-            }
-
-            public void setId(String id) {
-                this.id = id;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public void setArea(String area) {
-                this.area = area;
-            }
-
-            public void setLandmark(String landmark) {
-                this.landmark = landmark;
-            }
-
-            public void setPin_code(String pin_code) {
-                this.pin_code = pin_code;
-            }
-
-            public void setCity(String city) {
-                this.city = city;
-            }
-
-            public void setState(String state) {
-                this.state = state;
-            }
-
-            public void setMessage(String message) {
-                this.message = message;
-            }
-        }
-
         private void showMessageInSnackbar (String message){
             Snackbar snack = Snackbar.make(
-                    (((Activity) context).findViewById(android.R.id.content)),
+                    (((Activity) mContext).findViewById(android.R.id.content)),
                     message, Snackbar.LENGTH_SHORT);
-            snack.setDuration(Snackbar.LENGTH_SHORT);//change Duration as you need
-            //snack.setAction(actionButton, new View.OnClickListener());//add your own listener
+            snack.setDuration(Snackbar.LENGTH_SHORT);
             View view = snack.getView();
-            TextView tv = (TextView) view
+            TextView tv = view
                     .findViewById(com.google.android.material.R.id.snackbar_text);
-            tv.setTextColor(Color.WHITE);//change textColor
-
-            TextView tvAction = (TextView) view
+            tv.setTextColor(Color.WHITE);
+            TextView tvAction = view
                     .findViewById(com.google.android.material.R.id.snackbar_action);
             tvAction.setTextSize(16);
             tvAction.setTextColor(Color.WHITE);
-
             snack.show();
         }
 }

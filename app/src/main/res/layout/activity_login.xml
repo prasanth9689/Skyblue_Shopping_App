@@ -9,7 +9,7 @@
     tools:context=".activity.LoginActivity">
 
     <RelativeLayout
-        android:id="@+id/top_nav_main"
+        android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="false"
@@ -23,28 +23,16 @@
             android:layout_marginLeft="5dp"
             app:srcCompat="@drawable/ic_baseline_arrow_back_white_40"
             app:tint="@color/black" />
-        <!--
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-
-            android:layout_centerInParent="true"
-            android:fontFamily="sans-serif"
-            android:text="LOG IN"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-            -->
-
 
     </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/top_nav_main"
+        android:layout_below="@id/top"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        android:fontFamily="@font/varela_round"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/log_in"
         android:textColor="#595D60"
         android:textSize="25dp"
@@ -54,20 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true">
-
-
-
-    <TextView
-        android:id="@+id/firebase_token2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_marginLeft="10dp"
-        android:hint="firebase token"
-        android:textColor="#AA0000"
-        android:textColorHint="#A50000"
-        android:visibility="invisible"
-        tools:visibility="invisible" />
 
         <EditText
             android:id="@+id/etMobile"
@@ -106,7 +80,7 @@
             tools:layout_editor_absoluteY="178dp" />
 
         <Button
-            android:id="@+id/btLogin"
+            android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/etPassword"
@@ -121,10 +95,10 @@
             tools:layout_editor_absoluteY="234dp" />
 
         <Button
-            android:id="@+id/create_an_account_btn"
+            android:id="@+id/create_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_below="@+id/btLogin"
+            android:layout_below="@+id/login_btn"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
@@ -134,33 +108,6 @@
             android:textColor="#FFFFFF"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="234dp" />
-
-<!--        <TextView-->
-<!--            android:id="@+id/text_view_forgot"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/btLogin"-->
-
-<!--            android:layout_alignParentTop="false"-->
-<!--            android:layout_centerHorizontal="false"-->
-<!--            android:layout_marginLeft="20dp"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:text="@string/Forgot_your_password_text"-->
-<!--            android:textColor="#8E8F8F"-->
-<!--            android:textSize="14sp"-->
-<!--            tools:layout_editor_absoluteX="115dp"-->
-<!--            tools:layout_editor_absoluteY="50dp" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/id_forget_text"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_below="@id/btLogin"-->
-<!--            android:layout_centerHorizontal="true"-->
-<!--            android:layout_marginTop="10dp"-->
-<!--            android:layout_toRightOf="@id/text_view_forgot"-->
-<!--            android:text="@string/forget_password"-->
-<!--            android:textColor="@color/dark_nav" />-->
 
     </RelativeLayout>
 </RelativeLayout>

@@ -17,6 +17,7 @@ import com.skyblue.shop.activity.Home;
 import com.skyblue.shop.activity.PrivacyPolicyActivity;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
+import com.skyblue.shop.databinding.ActivityNameBinding;
 import com.skyblue.shop.model.Registration;
 import com.skyblue.shop.model.RegistrationSpModel;
 import com.skyblue.shop.retrofit.APIClient;
@@ -36,9 +37,9 @@ public class NameActivity extends AppCompatActivity {
     private String mName , mDate , mTime, mTimeZone, mDateTimeZone, mFirebaseToken;
     private String mMobile, mMobileNumberOnly, mPassword;
     private String mTodayDate , mTodayTime , mTodayTimeZone;
-    String mArea , mLandmark, mCity, mState , mPinCode;
+    private String mArea , mLandmark, mCity, mState , mPinCode;
     private ProgressDialog mProgressDialog;
-    APIInterface apiInterface;
+    private APIInterface apiInterface;
     private Context mContext = this;
     private RegistrationSpModel registrationSpModel;
 
@@ -187,7 +188,6 @@ public class NameActivity extends AppCompatActivity {
                     Intent intent = new Intent(mContext , Home.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-                   // Toast.makeText(context,data.user_id, Toast.LENGTH_SHORT).show();
                 }
             }
             @Override

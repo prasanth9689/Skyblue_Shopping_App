@@ -32,7 +32,7 @@
             android:text="@string/complete_registration"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:fontFamily="@font/open_sans_condensed_bold"/>
+            android:fontFamily="@font/poppins_semibold"/>
 
     </RelativeLayout>
 
@@ -41,14 +41,14 @@
         android:layout_height="match_parent"
         android:layout_below="@id/top_nav_main"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="0dp"
+        android:layout_marginBottom="60dp"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/open_sans_light"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/enter_first_name"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/open_sans_light"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/area_street_sector"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -101,7 +101,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/open_sans_light"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/landmark"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -126,7 +126,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/open_sans_light"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/pin_code"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -151,7 +151,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/open_sans_light"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/city_town"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -176,7 +176,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:fontFamily="@font/open_sans_light"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/select_state"
             android:textColor="@color/black"
             android:textStyle="bold" />
@@ -192,74 +192,71 @@
             android:fontFamily="@font/open_sans_light" />
 
 
+        <RelativeLayout
+            android:id="@+id/relativeLayoutPrivacy"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/edit_text_border_color_light_blue"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/text_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/open_sans_light"
+                android:text="@string/privacy_one"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/text_one"
+                android:fontFamily="@font/open_sans_light"
+                android:text="@string/privacy_two"
+                android:textColor="@color/colorMessageBackground" />
+
+            <TextView
+                android:id="@+id/text_two_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_one"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/open_sans_light"
+                android:text="@string/privacy_three"
+                android:textColor="@color/colorMessageBackground" />
+
+            <TextView
+                android:id="@+id/text_three"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_one"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/text_two_one"
+                android:fontFamily="@font/open_sans_light"
+                android:text="@string/privacy_four"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/text_four"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_one"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/text_three"
+                android:fontFamily="@font/open_sans_light"
+                android:text="@string/privacy_five"
+                android:textColor="@color/colorMessageBackground" />
+
+        </RelativeLayout>
     </LinearLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/relativeLayoutPrivacy"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="90dp"
-        android:background="@drawable/edit_text_border_color_light_blue"
-        android:padding="5dp">
-
-        <TextView
-            android:id="@+id/text_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:fontFamily="@font/open_sans_light"
-            android:text="@string/privacy_one"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/text_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:layout_toRightOf="@id/text_one"
-            android:fontFamily="@font/open_sans_light"
-            android:text="@string/privacy_two"
-            android:textColor="@color/colorMessageBackground" />
-
-        <TextView
-            android:id="@+id/text_two_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_one"
-            android:layout_marginLeft="5dp"
-            android:fontFamily="@font/open_sans_light"
-            android:text="@string/privacy_three"
-            android:textColor="@color/colorMessageBackground" />
-
-        <TextView
-            android:id="@+id/text_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_one"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/text_two_one"
-            android:fontFamily="@font/open_sans_light"
-            android:text="@string/privacy_four"
-            android:textColor="@color/black" />
-
-        <TextView
-            android:id="@+id/text_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text_one"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/text_three"
-            android:fontFamily="@font/open_sans_light"
-            android:text="@string/privacy_five"
-            android:textColor="@color/colorMessageBackground" />
-
-    </RelativeLayout>
 
     <Button
         android:id="@+id/create_btn"
@@ -276,6 +273,5 @@
         android:text="@string/create_an_acccount"
         android:textAllCaps="false"
         android:textColor="#ffffff" />
-
 
 </RelativeLayout>
