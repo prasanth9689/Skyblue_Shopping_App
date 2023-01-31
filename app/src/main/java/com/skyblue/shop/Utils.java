@@ -16,6 +16,7 @@ import com.google.android.material.snackbar.Snackbar;
 public class Utils {
     public static void showMessage(Context context,String message){
 
+        String hi = "";
         final Dialog dialog = new Dialog(context);
 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
