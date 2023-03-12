@@ -30,8 +30,8 @@
                     <com.hbb20.CountryCodePicker
                         android:id="@+id/ccp"
                         android:layout_width="wrap_content"
-                        android:layout_height="50dp"
-                        android:background="@drawable/edit_text_border_color_light_blue"
+                        android:layout_height="52dp"
+                        android:background="@drawable/edit_text_register"
                         app:ccpDialog_keyboardAutoPopup="false"
                         app:ccp_defaultNameCode="IN"
                         app:ccp_showFlag="false" />
@@ -43,7 +43,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/ccp"
-                        android:background="@drawable/edit_text_border_color_light_blue"
+                        android:background="@drawable/edit_text_register"
                         android:fontFamily="@font/open_sans_light"
                         android:hint="@string/phone_number"
                         android:textCursorDrawable="@drawable/color_cursor_primary"
@@ -57,7 +57,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@id/mobile_no"
                         android:layout_marginTop="10dp"
-                        android:background="@color/colorPrimaryBlue"
+                        android:background="@drawable/login_btn_border_radius"
                         android:fontFamily="@font/poppins_light"
                         android:text="@string/continue_"
                         android:textColor="#FFFFFF" />

@@ -26,22 +26,37 @@
 
     </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/top"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:text="@string/log_in"
-        android:textColor="#595D60"
-        android:textSize="25dp"
-        android:textStyle="bold" />
+        android:layout_below="@id/top">
+
+        <TextView
+            android:id="@+id/login_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/log_in"
+            android:textColor="#595D60"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_below="@id/login_text"
+            android:layout_width="350dp"
+            android:layout_height="350dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/login_image"/>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp">
 
         <EditText
             android:id="@+id/etMobile"
@@ -50,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="40dp"
-            android:background="@drawable/edit_text_border_color_light_blue"
+            android:background="@drawable/edit_text_register"
             android:ems="10"
             android:fontFamily="@font/open_sans_light"
             android:hint="@string/phone_number"
@@ -70,7 +85,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
             android:textCursorDrawable="@drawable/color_cursor_primary"
-            android:background="@drawable/edit_text_border_color_light_blue"
+            android:background="@drawable/edit_text_register"
             android:ems="10"
             android:fontFamily="@font/open_sans_light"
             android:hint="@string/password"
@@ -82,12 +97,12 @@
         <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/etPassword"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
-            android:background="@color/colorPrimaryBlue"
+            android:background="@drawable/login_btn_border_radius"
             android:fontFamily="@font/open_sans_light"
             android:text="@string/log_in"
             android:textColor="#FFFFFF"
@@ -97,15 +112,15 @@
         <Button
             android:id="@+id/create_btn"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/login_btn"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="40dp"
             android:layout_marginTop="10dp"
-            android:background="#006FC8"
+            android:background="@drawable/new_user_btn"
             android:fontFamily="@font/open_sans_light"
             android:text="@string/create_an_acccount"
-            android:textColor="#FFFFFF"
+            android:textColor="#006FC8"
             tools:layout_editor_absoluteX="161dp"
             tools:layout_editor_absoluteY="234dp" />
 
