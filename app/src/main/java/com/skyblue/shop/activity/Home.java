@@ -62,6 +62,9 @@ import java.util.Map;
 
 public class Home extends AppCompatActivity {
     private SessionHandler session;
+
+    private final static String TAG = "Home";
+
     DrawerLayout drawerLayout;
     RelativeLayout   loginTopRelativeLayout , userNameRelativeLayout;
     TextView userNameTextView , userNameDrawerTextView;
