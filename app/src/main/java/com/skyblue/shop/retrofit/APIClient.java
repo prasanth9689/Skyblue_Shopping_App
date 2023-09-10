@@ -16,17 +16,12 @@ public class APIClient {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient client = new OkHttpClient.Builder()
-                .hostnameVerifier(new HostnameVerifier() {
-                    @Override
-                    public boolean verify(String s, SSLSession sslSession) {
-                        return true;
-                    }
-                })
+                .hostnameVerifier((s, sslSession) -> true)
                 .addInterceptor(interceptor)
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("https://majesticndt.com")
+                .baseUrl("https://imadras.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

@@ -15,11 +15,35 @@
       },
       "oauth_client": [
         {
+          "client_id": "29318842686-036kv0de4kkfhmv8f3q7lalb96g9p40e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.shop",
+            "certificate_hash": "22541c8a3e1293817f77351792faa299617c7849"
+          }
+        },
+        {
           "client_id": "29318842686-2b6s58837om3r529o67tss8e6gcp71ei.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.skyblue.shop",
             "certificate_hash": "cfa25b53526447bf743af855d39b147085300dce"
+          }
+        },
+        {
+          "client_id": "29318842686-ci6l5p6qos419hai9q6bqoqqg3cnekj0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.shop",
+            "certificate_hash": "e9222df5c30580718fd3129d67baa48234879bf5"
+          }
+        },
+        {
+          "client_id": "29318842686-uom8umoosca0bht45qcfiiglfv6nn46u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyblue.shop",
+            "certificate_hash": "e2976bc82fcbbbd51957b5635428028c52574f2c"
           }
         },
         {

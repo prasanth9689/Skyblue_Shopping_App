@@ -38,6 +38,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.skyblue.shop.AppConstants;
+import com.skyblue.shop.databinding.ActivityHomeBinding;
 import com.skyblue.shop.model.Products;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
@@ -61,33 +62,19 @@ import java.util.Map;
 
 
 public class Home extends AppCompatActivity {
+    private ActivityHomeBinding binding;
     private SessionHandler session;
-
-    private final static String TAG = "Home";
-    DrawerLayout drawerLayout;
-    RelativeLayout   loginTopRelativeLayout , userNameRelativeLayout;
-    TextView userNameTextView , userNameDrawerTextView;
-    TextView txtUserNameDrawer;
-    String user_name_logged;
-    EditText searchEditText;
     private Context context = this;
-    // Drawer
-    Button loginBtnDrawer;
-    RelativeLayout relativeLayoutAccount ;
-    ProgressBar progressDialog;
-    BottomNavigationView bottomNavigationView;
-    private DatabaseManager databaseManager;
-
-    Locale myLocale;
-    String currentLanguage = "en", currentLang;
-
-    private RecyclerView recyclerView;
+    private final static String TAG = "Home";
+    private String currentLanguage = "en", currentLang;
+    private Locale myLocale;
     private LinearLayoutManager linearLayoutManager;
     private List<Products> productsList;
     private RecyclerView.Adapter adapter;
-    User user;
-    Handler handler = new Handler();
-    Runnable runnable;
+    private User user;
+    private DatabaseManager databaseManager;
+    private Handler handler = new Handler();
+    private Runnable runnable;
     int delay = 10000;
 
     private NotificationManager mNotifyManager;
@@ -102,7 +89,9 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        binding = ActivityHomeBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         currentLanguage = getIntent().getStringExtra(currentLang);
 
@@ -112,41 +101,37 @@ public class Home extends AppCompatActivity {
         session = new SessionHandler(getApplicationContext());
         user = session.getUserDetails();
 
-        initVariable();
         setUpRecyclerView();
         setOnClickListener();
 
         if(session.isLoggedIn()){
-            userNameTextView.setText(user.getName());
-            userNameDrawerTextView.setText(user.getName());
+            binding.navDrawerLayout.userName.setText(user.getName());
+            binding.navDrawerLayout.userName.setText(user.getName());
 
-            userNameRelativeLayout.setVisibility(View.VISIBLE);
-            loginTopRelativeLayout.setVisibility(View.INVISIBLE);
+            binding.toolbar.usernameLayout.setVisibility(View.VISIBLE);
+            binding.toolbar.loginTextLayout.setVisibility(View.INVISIBLE);
             // Drawer
-            loginBtnDrawer.setVisibility(View.INVISIBLE);
+            binding.navDrawerLayout.loginBtn.setVisibility(View.INVISIBLE);
         }else{
-           loginTopRelativeLayout.setVisibility(View.VISIBLE);
-            userNameRelativeLayout.setVisibility(View.INVISIBLE);
+            binding.toolbar.loginTextLayout.setVisibility(View.VISIBLE);
+            binding.toolbar.usernameLayout.setVisibility(View.INVISIBLE);
 
             // Drawer
-            userNameDrawerTextView.setVisibility(View.INVISIBLE);
-            txtUserNameDrawer.setVisibility(View.INVISIBLE);
-            loginBtnDrawer.setVisibility(View.VISIBLE);
+            binding.navDrawerLayout.userName.setVisibility(View.INVISIBLE);
+            binding.navDrawerLayout.usernamePlaceHolder.setVisibility(View.INVISIBLE);
+            binding.navDrawerLayout.loginBtn.setVisibility(View.VISIBLE);
         }
         productsList.clear();
         getProducts();
 
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        binding.toolbar.recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
-
                 int totalItemCount = linearLayoutManager.getItemCount();
                 int lastVisibleItem = getLastVisibleItem(new int[]{linearLayoutManager.findLastVisibleItemPosition()});;
-
                 if (!isLoading && totalItemCount > 1 &&
                         totalItemCount <= (lastVisibleItem + visibleThreshold)) {
-
                     //Loading more data from server
                     productsList.add(null);
                     adapter.notifyItemInserted(productsList.size() - 1);
@@ -158,71 +143,58 @@ public class Home extends AppCompatActivity {
     }
 
     private void getProductsLoadMore() {
-        progressDialog.setVisibility(View.VISIBLE);
+        binding.toolbar.progressBar.setVisibility(View.VISIBLE);
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.HOME_GET_PRODUCTS,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        setLoading(false);
+                response -> {
+                    setLoading(false);
+                    productsList.remove(productsList.size() - 1);
+                    adapter.notifyItemRemoved(productsList.size());
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                        productsList.remove(productsList.size() - 1);
-                        adapter.notifyItemRemoved(productsList.size());
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("data");
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                            Products products = new Products();
 
-                                Products products = new Products();
-
-                                products.setId(jsonObject2.getString("product_id"));
-                                products.setProduct_name(jsonObject2.getString("product_name"));
-                                products.setTitle(jsonObject2.getString("title"));
-                                products.setThumbnail(jsonObject2.getString("thumbnail"));
-                                products.setSale_price(jsonObject2.getString("sale_price"));
-                                products.setDiscount_price(jsonObject2.getString("discount_price"));
-                                products.setRating(jsonObject2.getString("rating"));
-                                products.setFeature_1(jsonObject2.getString("feature_1"));
-                                products.setFeature_2(jsonObject2.getString("feature_2"));
-                                products.setFeature_3(jsonObject2.getString("feature_3"));
-                                products.setFeature_4(jsonObject2.getString("feature_4"));
-                                products.setFeature_5(jsonObject2.getString("feature_5"));
+                            products.setId(jsonObject2.getString("product_id"));
+                            products.setProduct_name(jsonObject2.getString("product_name"));
+                            products.setTitle(jsonObject2.getString("title"));
+                            products.setThumbnail(jsonObject2.getString("thumbnail"));
+                            products.setSale_price(jsonObject2.getString("sale_price"));
+                            products.setDiscount_price(jsonObject2.getString("discount_price"));
+                            products.setRating(jsonObject2.getString("rating"));
+                            products.setFeature_1(jsonObject2.getString("feature_1"));
+                            products.setFeature_2(jsonObject2.getString("feature_2"));
+                            products.setFeature_3(jsonObject2.getString("feature_3"));
+                            products.setFeature_4(jsonObject2.getString("feature_4"));
+                            products.setFeature_5(jsonObject2.getString("feature_5"));
 //                                products.setGategory_id(jsonObject2.getString("gategory_id"));
 //                                products.setStock(jsonObject2.getString("stock"));
 //                                products.setSeller_id(jsonObject2.getString("seller_id"));
 //                                products.setSeller_name(jsonObject2.getString("seller_name"));
 
-                                productsList.add(products);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            progressDialog.setVisibility(View.INVISIBLE);
+                            productsList.add(products);
                         }
-                        // adapter.clear();
-                        adapter.notifyDataSetChanged();
-                        progressDialog.setVisibility(View.INVISIBLE);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        binding.toolbar.progressBar.setVisibility(View.INVISIBLE);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Volley", error.toString());
-                progressDialog.setVisibility(View.INVISIBLE);
-            }
-        }) {
+                    adapter.notifyDataSetChanged();
+                    binding.toolbar.progressBar.setVisibility(View.INVISIBLE);
+                }, error -> {
+                    Log.e(TAG, error.toString());
+            binding.toolbar.progressBar.setVisibility(View.INVISIBLE);
+                }) {
             @Override
             protected Map<String, String> getParams() {
-
-                // Creating Map String Params.
                 Map<String, String> params = new HashMap<String, String>();
-
-                // Adding All values to Params.
                 if (session.isLoggedIn()){
                     params.put("user_id", user.getId());
                 }else{
                     params.put("user_id", "1");
                 }
-
                 return params;
             }
         };
@@ -232,20 +204,15 @@ public class Home extends AppCompatActivity {
 
     private void createchannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-
-            NotificationChannel mChannel = new NotificationChannel(id3,
-                    getString(R.string.channel_name),  //name of the channel
-                    NotificationManager.IMPORTANCE_DEFAULT);   //importance level
-
-
-            //a urgent level channel
+            new NotificationChannel(id3,
+                    getString(R.string.channel_name),
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            NotificationChannel mChannel;
             mChannel = new NotificationChannel(id3,
-                    getString(R.string.channel_name2),  //name of the channel
+                    getString(R.string.channel_name2),
                     NotificationManager.IMPORTANCE_HIGH);   //importance level
-            // Configure the notification channel.
             mChannel.setDescription(getString(R.string.channel_description3));
             mChannel.enableLights(true);
-            // Sets the notification light color for notifications posted to this channel, if the device supports this feature.
             mChannel.setLightColor(Color.GREEN);
             mChannel.enableVibration(true);
             mChannel.setShowBadge(true);
@@ -255,95 +222,79 @@ public class Home extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @SuppressLint("NonConstantResourceId")
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.item_home:
-                        startActivity(new Intent(Home.this
-                                , Home.class));
-                        finish();
+        binding.toolbar.bottomNavHome.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.item_home:
+                    startActivity(new Intent(context
+                            , Home.class));
+                    finish();
+                    overridePendingTransition(0, 0);
+                    return true;
+
+                case R.id.item_review:
+                    if (session.isLoggedIn()) {
+                        Intent ii2 = new Intent(context, DrawerMyOrderActivity.class);
+                        startActivity(ii2);
                         overridePendingTransition(0, 0);
-                        return true;
-
-                    case R.id.item_review:
-                        if (session.isLoggedIn()) {
-                            Intent ii2 = new Intent(Home.this, DrawerMyOrderActivity.class);
-                            startActivity(ii2);
-                            overridePendingTransition(0, 0);
-                        } else {
-                            Intent ii = new Intent(Home.this, RegisterActivity.class);
-                            startActivity(ii);
-                        }
-                        return true;
-
-                    case R.id.item_account:
-                        if (session.isLoggedIn()) {
-                            Intent ii = new Intent(Home.this, AccountActivity.class);
-                            startActivity(ii);
-                        } else {
-                            Intent ii = new Intent(Home.this, RegisterActivity.class);
-                            startActivity(ii);
-                        }
-                        return true;
-
-                    case R.id.item_search:
-                        Intent ii = new Intent(Home.this, SearchActivity.class);
+                    } else {
+                        Intent ii = new Intent(context, RegisterActivity.class);
                         startActivity(ii);
-                        return true;
-                }
-                return false;
+                    }
+                    return true;
+
+                case R.id.item_account:
+                    if (session.isLoggedIn()) {
+                        Intent ii = new Intent(context, AccountActivity.class);
+                        startActivity(ii);
+                    } else {
+                        Intent ii = new Intent(context, RegisterActivity.class);
+                        startActivity(ii);
+                    }
+                    return true;
+
+                case R.id.item_search:
+                    Intent ii = new Intent(context, SearchActivity.class);
+                    startActivity(ii);
+                    return true;
+            }
+            return false;
+        });
+
+        binding.toolbar.search.setOnClickListener(view -> {
+            if (session.isLoggedIn()) {
+                Intent ii = new Intent(context, SearchActivity.class);
+                startActivity(ii);
+                overridePendingTransition(0,0);
+            } else {
+                Intent ii = new Intent(context, RegisterActivity.class);
+                startActivity(ii);
             }
         });
 
-        searchEditText.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (session.isLoggedIn()) {
-                    Intent ii = new Intent(Home.this, SearchActivity.class);
-                    startActivity(ii);
-                    overridePendingTransition(0,0);
-                } else {
-                    Intent ii = new Intent(Home.this, RegisterActivity.class);
-                    startActivity(ii);
-                }
-            }
+        binding.toolbar.loginTextLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(context, RegisterActivity.class);
+            startActivity(intent);
         });
 
-        loginTopRelativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Home.this, RegisterActivity.class);
+        binding.toolbar.userAccountLayoutBtn.setOnClickListener(v -> {
+            session = new SessionHandler(context);
+            if(session.isLoggedIn()){
+                Intent intent = new Intent(context, AccountActivity.class);
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent(context, RegisterActivity.class);
                 startActivity(intent);
             }
         });
 
-        relativeLayoutAccount.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                session = new SessionHandler(Home.this);
-                if(session.isLoggedIn()){
-                    Intent intent = new Intent(Home.this, AccountActivity.class);
-                    startActivity(intent);
-                }else{
-                    Intent intent = new Intent(Home.this, RegisterActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
-
-        userNameRelativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                session = new SessionHandler(Home.this);
-                if(session.isLoggedIn()){
-                    Intent intent = new Intent(Home.this, AccountActivity.class);
-                    startActivity(intent);
-                }else{
-                    Intent intent = new Intent(Home.this, RegisterActivity.class);
-                    startActivity(intent);
-                }
+        binding.toolbar.usernameLayout.setOnClickListener(v -> {
+            session = new SessionHandler(context);
+            if(session.isLoggedIn()){
+                Intent intent = new Intent(context, AccountActivity.class);
+                startActivity(intent);
+            }else{
+                Intent intent = new Intent(context, RegisterActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -353,93 +304,62 @@ public class Home extends AppCompatActivity {
         adapter = new ProductsAdapter(context.getApplicationContext(), productsList);
         linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setItemViewCacheSize(20);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(adapter);
-    }
-
-    private void initVariable() {
-        bottomNavigationView = findViewById(R.id.bottom_nav_home);
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-
-        loginTopRelativeLayout = findViewById(R.id.id_login_text_rel);
-        userNameRelativeLayout = findViewById(R.id.id_user_text_rel);
-        userNameTextView = findViewById(R.id.id_user_name);
-        searchEditText = findViewById(R.id.editTextSearch);
-
-        // Drawer
-        txtUserNameDrawer = findViewById(R.id.txt_username);
-        userNameDrawerTextView = findViewById(R.id.id_user_name_drawer);
-        loginBtnDrawer = findViewById(R.id.id_login_btn_drawer);
-        relativeLayoutAccount = findViewById(R.id.id_rel_user_account);
-
-        recyclerView = findViewById(R.id.recycler_view);
-        progressDialog = findViewById(R.id.progressBar);
+        binding.toolbar.recyclerView.setHasFixedSize(true);
+        binding.toolbar.recyclerView.setItemViewCacheSize(20);
+        binding.toolbar.recyclerView.setLayoutManager(linearLayoutManager);
+        binding.toolbar.recyclerView.setAdapter(adapter);
     }
 
     private void getProducts() {
-        progressDialog.setVisibility(View.VISIBLE);
+        binding.toolbar.progressBar.setVisibility(View.VISIBLE);
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.HOME_GET_PRODUCTS,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            JSONArray jsonArray = jsonObject.getJSONArray("data");
+                response -> {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = jsonObject.getJSONArray("data");
 
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject jsonObject2 = jsonArray.getJSONObject(i);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject2 = jsonArray.getJSONObject(i);
 
-                                Products products = new Products();
+                            Products products = new Products();
 
-                                products.setId(jsonObject2.getString("product_id"));
-                                products.setProduct_name(jsonObject2.getString("product_name"));
-                                products.setTitle(jsonObject2.getString("title"));
-                                products.setThumbnail(jsonObject2.getString("thumbnail"));
-                                products.setSale_price(jsonObject2.getString("sale_price"));
-                                products.setDiscount_price(jsonObject2.getString("discount_price"));
-                                products.setRating(jsonObject2.getString("rating"));
-                                products.setFeature_1(jsonObject2.getString("feature_1"));
-                                products.setFeature_2(jsonObject2.getString("feature_2"));
-                                products.setFeature_3(jsonObject2.getString("feature_3"));
-                                products.setFeature_4(jsonObject2.getString("feature_4"));
-                                products.setFeature_5(jsonObject2.getString("feature_5"));
+                            products.setId(jsonObject2.getString("product_id"));
+                            products.setProduct_name(jsonObject2.getString("product_name"));
+                            products.setTitle(jsonObject2.getString("title"));
+                            products.setThumbnail(jsonObject2.getString("thumbnail"));
+                            products.setSale_price(jsonObject2.getString("sale_price"));
+                            products.setDiscount_price(jsonObject2.getString("discount_price"));
+                            products.setRating(jsonObject2.getString("rating"));
+                            products.setFeature_1(jsonObject2.getString("feature_1"));
+                            products.setFeature_2(jsonObject2.getString("feature_2"));
+                            products.setFeature_3(jsonObject2.getString("feature_3"));
+                            products.setFeature_4(jsonObject2.getString("feature_4"));
+                            products.setFeature_5(jsonObject2.getString("feature_5"));
 //                                products.setGategory_id(jsonObject2.getString("gategory_id"));
 //                                products.setStock(jsonObject2.getString("stock"));
 //                                products.setSeller_id(jsonObject2.getString("seller_id"));
 //                                products.setSeller_name(jsonObject2.getString("seller_name"));
 
-                                productsList.add(products);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            progressDialog.setVisibility(View.INVISIBLE);
+                            productsList.add(products);
                         }
-                        // adapter.clear();
-                        adapter.notifyDataSetChanged();
-                        progressDialog.setVisibility(View.INVISIBLE);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        binding.toolbar.progressBar.setVisibility(View.INVISIBLE);
                     }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Volley", error.toString());
-                progressDialog.setVisibility(View.INVISIBLE);
-            }
-        }) {
+                    adapter.notifyDataSetChanged();
+                    binding.toolbar.progressBar.setVisibility(View.INVISIBLE);
+                }, error -> {
+                    Log.e(TAG, error.toString());
+            binding.toolbar.progressBar.setVisibility(View.INVISIBLE);
+                }) {
             @Override
             protected Map<String, String> getParams() {
-
-                // Creating Map String Params.
                 Map<String, String> params = new HashMap<String, String>();
-
-                // Adding All values to Params.
                 if (session.isLoggedIn()){
                     params.put("user_id", user.getId());
                 }else{
                     params.put("user_id", "1");
                 }
-
                 return params;
             }
         };
@@ -448,7 +368,7 @@ public class Home extends AppCompatActivity {
     }
 
     public void ClickMenu(View view){
-        openDrawer(drawerLayout);
+        openDrawer(binding.drawerLayout);
     }
 
     private static void openDrawer(DrawerLayout drawerLayout) {
@@ -456,7 +376,7 @@ public class Home extends AppCompatActivity {
     }
 
     public void ClickLogo(View view){
-        closeDrawer(drawerLayout);
+        closeDrawer(binding.drawerLayout);
     }
 
     public static void closeDrawer(DrawerLayout drawerLayout) {
@@ -481,127 +401,80 @@ public class Home extends AppCompatActivity {
     }
 
     public void ClickDashboard(View view){
-
         redirectActivity(this, DashActivity.class);
-
     }
 
     public void ClickAboutUs(View view){
-
         redirectActivity(this, AboutUsActivity.class);
-
     }
 
     public void ClickLogOut(View view){
-
-
-
         session = new SessionHandler(context);
-
         if (session.isLoggedIn()) {
             session = new SessionHandler(getApplicationContext());
             User user = session.getUserDetails();
-
             session.logoutUser();
-
-            Intent intent = new Intent(Home.this, Home.class);
+            Intent intent = new Intent(context, Home.class);
             startActivity(intent);
             finish();
         } else {
             Intent ii = new Intent(context, RegisterActivity.class);
             startActivity(ii);
         }
-
     }
 
     public void ClickSettings(View view){
-//        if(session.isLoggedIn()){
-//            redirectActivity(this, SettingsActivity.class);
-//        }else{
-//            Intent intent = new Intent(Home.this, LoginActivity.class);
-//            startActivity(intent);
-//        }
-
         redirectActivity(this, SettingsActivity.class);
-
     }
 
     public void ClickAllGategories(View view){
-
-//        session = new SessionHandler(Home.this);
-//
-//        if(session.isLoggedIn()){
-//            redirectActivity(this, DrawerAllGategoriesActivity.class);
-//        }else{
-//            Intent intent = new Intent(Home.this, LoginActivity.class);
-//            startActivity(intent);
-//        }
-
         redirectActivity(this, DrawerAllGategoriesActivity.class);
     }
 
     public void ClickOfferZone (View view){
-        session = new SessionHandler(Home.this);
+        session = new SessionHandler(context);
 
         if(session.isLoggedIn()){
             redirectActivity(this, DrawerOfferZoneActivity.class);
         }else{
-            Intent intent = new Intent(Home.this, RegisterActivity.class);
+            Intent intent = new Intent(context, RegisterActivity.class);
             startActivity(intent);
         }
 
     }
 
     public void ClickSelectLanguage(View view){
-//        session = new SessionHandler(Home.this);
-//
-//        if(session.isLoggedIn()){
-//            redirectActivity(this, DrawerSelectLanguageActivity.class);
-//        }else{
-//            Intent intent = new Intent(Home.this, LoginActivity.class);
-//            startActivity(intent);
-//        }
-
         redirectActivity(this, ChooseLanguageActivity.class);
-
     }
 
     public void ClickMyOrder(View view){
-        session = new SessionHandler(Home.this);
-
+        session = new SessionHandler(context);
         if(session.isLoggedIn()){
             redirectActivity(this, DrawerMyOrderActivity.class);
         }else{
-            Intent intent = new Intent(Home.this, RegisterActivity.class);
+            Intent intent = new Intent(context, RegisterActivity.class);
             startActivity(intent);
         }
-
     }
 
     public void ClickMyWishList(View view){
-
-        session = new SessionHandler(Home.this);
-
+        session = new SessionHandler(context);
         if(session.isLoggedIn()){
             redirectActivity(this, DrawerWishListActivity.class);
         }else{
-            Intent intent = new Intent(Home.this, RegisterActivity.class);
+            Intent intent = new Intent(context, RegisterActivity.class);
             startActivity(intent);
         }
-
     }
 
     public void ClickAccount(View view){
-
-        session = new SessionHandler(Home.this);
-
+        session = new SessionHandler(context);
         if(session.isLoggedIn()){
             redirectActivity(this, AccountActivity.class);
         }else{
-            Intent intent = new Intent(Home.this, RegisterActivity.class);
+            Intent intent = new Intent(context, RegisterActivity.class);
             startActivity(intent);
         }
-
     }
 
     public void ClickLogin(View view){
@@ -609,9 +482,7 @@ public class Home extends AppCompatActivity {
     }
 
     public static void redirectActivity(Activity activity, Class aClass) {
-
         Intent intent = new Intent(activity, aClass);
-
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         activity.startActivity(intent);
     }
@@ -619,26 +490,18 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-
-        Home.closeDrawer(drawerLayout);
+        Home.closeDrawer(binding.drawerLayout);
     }
 
     @Override
     public void onResume()
     {
-//        handler.postDelayed(runnable = new Runnable() {
-//            public void run() {
-//                handler.postDelayed(runnable, delay);
-//                checkAppIsRunning();
-//            }
-//        }, delay);
         super.onResume();
 
         if (session.isLoggedIn()){
-            userNameTextView.setText(user.getName());
-            userNameDrawerTextView.setText(user.getName());
+            binding.toolbar.userName.setText(user.getName());
+            binding.navDrawerLayout.userName.setText(user.getName());
         }
-
     }
 
     @Override
@@ -648,11 +511,8 @@ public class Home extends AppCompatActivity {
 
     private void checkAppIsRunning() {
         if (Helper.isAppRunning(Home.this, "com.skyblue.skybluea")) {
-            // App is running
-          //  Toast.makeText(context, "App IS RUNNING", Toast.LENGTH_SHORT).show();
             showNotification();
         } else {
-            // App is not running
             Toast.makeText(context, "App IS NOT RUNNING", Toast.LENGTH_SHORT).show();
         }
     }
@@ -670,38 +530,18 @@ public class Home extends AppCompatActivity {
         Snackbar snack = Snackbar.make(
                 (((Activity) context).findViewById(android.R.id.content)),
                 message, Snackbar.LENGTH_SHORT);
-        snack.setDuration(Snackbar.LENGTH_SHORT);//change Duration as you need
-        //snack.setAction(actionButton, new View.OnClickListener());//add your own listener
+        snack.setDuration(Snackbar.LENGTH_SHORT);
         View view = snack.getView();
-        TextView tv = (TextView) view
+        TextView tv = view
                 .findViewById(com.google.android.material.R.id.snackbar_text);
-        tv.setTextColor(Color.WHITE);//change textColor
+        tv.setTextColor(Color.WHITE);
 
-        TextView tvAction = (TextView) view
+        TextView tvAction = view
                 .findViewById(com.google.android.material.R.id.snackbar_action);
         tvAction.setTextSize(16);
         tvAction.setTextColor(Color.WHITE);
         snack.show();
     }
-
-    /*
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-     */
-/*
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
-
- */
 
     public void setLoading(boolean status) {
         isLoading = status;

@@ -13,6 +13,7 @@
         android:orientation="vertical">
 
         <include
+            android:id="@+id/toolbar"
             layout="@layout/main_toolbar"/>
 
         <TextView
@@ -31,7 +32,9 @@
         android:layout_gravity="start"
         android:background="@color/white">
 
-        <include layout="@layout/main_nav_drawer" />
+        <include
+            android:id="@+id/nav_drawer_layout"
+            layout="@layout/main_nav_drawer" />
     </RelativeLayout>
 
 

@@ -22,9 +22,11 @@
 
             <ImageView
                 android:id="@+id/id_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
                 android:src="@drawable/common_menu_35"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
                 android:onClick="ClickMenu"
                 android:layout_marginStart="5dp"
                 android:layout_centerVertical="true"/>
@@ -66,7 +68,7 @@
 <!--                android:textSize="5dp" />-->
 
             <RelativeLayout
-                android:id="@+id/id_login_text_rel"
+                android:id="@+id/login_text_layout"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
@@ -87,15 +89,14 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/id_user_text_rel"
+                android:id="@+id/username_layout"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="10dp"
                 android:layout_toLeftOf="@id/id_user_account">
 
-
                 <TextView
-                    android:id="@+id/id_user_name"
+                    android:id="@+id/user_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -104,11 +105,10 @@
                     android:textColor="@color/white"
                     android:textStyle="bold" />
 
-
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/id_rel_user_account"
+                android:id="@+id/user_account_layout_btn"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true">
@@ -148,7 +148,7 @@ android:background="@color/white"
 
 
                 <EditText
-                    android:id="@+id/editTextSearch"
+                    android:id="@+id/search"
 
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
@@ -203,7 +203,8 @@ android:background="@color/white"
          <RelativeLayout
              android:layout_width="match_parent"
              android:layout_height="70dp"
-             android:background="@drawable/splash_gradient">
+             android:background="@drawable/splash_gradient"
+             android:visibility="gone">
 
              <HorizontalScrollView
                  android:layout_width="wrap_content"
