@@ -1,8 +1,6 @@
 package com.skyblue.shop.activity.settings;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.net.http.SslError;
@@ -22,7 +20,6 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
     WebView webView;
     Activity activity;
     private ProgressDialog progressDialog;
-    SwipeRefreshLayout swipeRefreshLayout;
     ImageView backButton;
 
     @Override
@@ -30,7 +27,6 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_terms_and_conditions);
         webView = findViewById(R.id.webView);
-        swipeRefreshLayout = findViewById(R.id.swipeContainer);
         backButton = findViewById(R.id.back_terms_and_conditions);
 
         activity = this;
@@ -82,15 +78,6 @@ public class TermsAndConditionsActivity extends AppCompatActivity {
             public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 
                 webView.loadUrl("file:///android_asset/internet_error.html");
-            }
-        });
-
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                webView.loadUrl("https://majesticndt.com/prasanth/skyblue_shopping/privacy_policy/");
-                swipeRefreshLayout.setRefreshing(false);
             }
         });
 

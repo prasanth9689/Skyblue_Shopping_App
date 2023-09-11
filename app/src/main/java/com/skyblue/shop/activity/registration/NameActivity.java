@@ -9,10 +9,6 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
 import com.skyblue.shop.activity.Home;
 import com.skyblue.shop.activity.PrivacyPolicyActivity;
 import com.skyblue.shop.R;
@@ -122,17 +118,7 @@ public class NameActivity extends AppCompatActivity {
     }
 
     private void genarateFirebaseToken() {
-        FirebaseInstanceId.getInstance()
-                .getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            mFirebaseToken = task.getResult().getToken();
-                        }
-                    }
-                });
+
     }
 
     private void initSpinnerState() {

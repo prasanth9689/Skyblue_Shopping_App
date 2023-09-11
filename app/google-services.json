@@ -23,14 +23,6 @@
           }
         },
         {
-          "client_id": "29318842686-2b6s58837om3r529o67tss8e6gcp71ei.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.skyblue.shop",
-            "certificate_hash": "cfa25b53526447bf743af855d39b147085300dce"
-          }
-        },
-        {
           "client_id": "29318842686-ci6l5p6qos419hai9q6bqoqqg3cnekj0.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

@@ -1,7 +1,6 @@
 plugins {
     id 'com.android.application'
     id 'com.google.gms.google-services'
-
 }
 
 android {
@@ -10,10 +9,10 @@ android {
     defaultConfig {
         applicationId "com.skyblue.shop"
         minSdk 21
-        //noinspection OldTargetApi
+        //noinspection OldTargetApi,EditedTargetSdkVersion
         targetSdk 33
-        versionCode 1001
-        versionName "22310701"
+        versionCode 1002
+        versionName "22310702"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -42,6 +41,7 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'androidx.navigation:navigation-fragment:2.3.5'
     implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'androidx.annotation:annotation-jvm:1.7.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -51,8 +51,10 @@ dependencies {
     implementation 'com.hbb20:ccp:2.3.2'
     implementation 'com.android.volley:volley:1.1.1'
 
-    implementation 'com.google.firebase:firebase-messaging:17.3.4'
-    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'com.google.firebase:firebase-messaging:23.2.1'
+    implementation 'com.google.firebase:firebase-auth:22.1.1'
+    implementation platform('com.google.firebase:firebase-bom:32.2.3')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
 
 
     implementation 'com.amitshekhar.android:android-networking:1.0.2'
@@ -78,4 +80,6 @@ dependencies {
     }
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+
+
 }

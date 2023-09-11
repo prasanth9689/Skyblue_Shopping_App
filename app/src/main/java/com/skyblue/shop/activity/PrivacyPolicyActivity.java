@@ -1,8 +1,5 @@
 package com.skyblue.shop.activity;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -16,6 +13,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
+import androidx.appcompat.app.AppCompatActivity;
+//import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.skyblue.shop.AppConstants;
 import com.skyblue.shop.R;
 
@@ -24,7 +24,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
     WebView webView;
     Activity activity;
     private ProgressDialog progressDialog;
-    SwipeRefreshLayout swipeRefreshLayout;
+   // SwipeRefreshLayout swipeRefreshLayout;
 
     ImageView backBtn;
 
@@ -35,7 +35,7 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_privacy_policy);
 
         webView = findViewById(R.id.webView);
-        swipeRefreshLayout = findViewById(R.id.swipeContainer);
+    //    swipeRefreshLayout = findViewById(R.id.swipeContainer);
         backBtn = findViewById(R.id.privacy_policy_back_btn);
 
         activity = this;
@@ -88,14 +88,14 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                webView.loadUrl("https://majesticndt.com/prasanth/online_shopping/privacy_policy.html");
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
+//        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//                webView.loadUrl("https://majesticndt.com/prasanth/online_shopping/privacy_policy.html");
+//                swipeRefreshLayout.setRefreshing(false);
+//            }
+//        });
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override

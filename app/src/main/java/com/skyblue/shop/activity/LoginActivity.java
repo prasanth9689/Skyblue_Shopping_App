@@ -14,23 +14,9 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.iid.InstanceIdResult;
-import com.skyblue.shop.AppConstants;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
 import com.skyblue.shop.activity.registration.RegistrationHandler;
@@ -38,18 +24,9 @@ import com.skyblue.shop.databinding.ActivityLoginBinding;
 import com.skyblue.shop.model.Login;
 import com.skyblue.shop.model.RegistrationSpModel;
 import com.skyblue.shop.model.User;
-import com.skyblue.shop.Utils;
 import com.skyblue.shop.activity.registration.RegisterActivity;
 import com.skyblue.shop.retrofit.APIClient;
 import com.skyblue.shop.retrofit.APIInterface;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private RegistrationHandler mRegisterSession;
     private static final String KEY_EMPTY = "";
     private String mName , mMobile , mPassword , mFirebaseToken , mMobileNumber;
+    private static final String TAG = "Login";
     private ProgressDialog mProgressDialog;
     private APIInterface mApiInterface;
     private Context mContext = this;
@@ -86,7 +64,6 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         setOnClickListener();
-        genarateFirabaseToken();
 
         mMobile = mRegistrationSpModel.getMobile();
         binding.etMobile.setText(mMobile);
@@ -100,20 +77,6 @@ public class LoginActivity extends AppCompatActivity {
     private void FULL_SCREEN_REQUEST() {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-    }
-
-    private void genarateFirabaseToken() {
-        FirebaseInstanceId.getInstance()
-                .getInstanceId()
-                .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<InstanceIdResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            mFirebaseToken = task.getResult().getToken();
-                        }
-                    }
-                });
     }
 
     private void setOnClickListener() {

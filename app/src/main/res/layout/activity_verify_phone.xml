@@ -11,7 +11,8 @@
         android:id="@+id/top_nav"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:layout_margin="10dp">
 
         <ImageView
             android:id="@+id/backBtn"

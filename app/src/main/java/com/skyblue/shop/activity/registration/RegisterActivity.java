@@ -55,7 +55,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setOnClickListener() {
-        binding.mobileNo.setOnClickListener((View.OnClickListener) v -> binding.checkUserExpectation.setText(""));
+        binding.mobileNo.setOnClickListener(v -> binding.checkUserExpectation.setText(""));
        binding.continueBtn.setOnClickListener(v -> {
            mMobileNumberFull =binding.ccp.getSelectedCountryCodeWithPlus() + binding.mobileNo.getText().toString();
            mMobileNumber = binding.mobileNo.getText().toString();
@@ -98,7 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                    return params;
                }
            };
-           RequestQueue requestQueue = Volley.newRequestQueue(RegisterActivity.this);
+           RequestQueue requestQueue = Volley.newRequestQueue(context);
            requestQueue.add(stringRequest);
        });
     }
@@ -109,7 +109,7 @@ public class RegisterActivity extends AppCompatActivity {
         String phone_code = binding.ccp.getSelectedCountryCodeWithPlus();
 
         mRegisterSession.saveMobileNo(mMobileNumber, country_name, country_name_code, phone_code);
-        Intent intent = new Intent(RegisterActivity.this, VerifyPhoneActivity.class);
+        Intent intent = new Intent(context, VerifyPhoneActivity.class);
         startActivity(intent);
     }
 

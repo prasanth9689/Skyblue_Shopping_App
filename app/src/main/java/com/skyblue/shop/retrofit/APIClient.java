@@ -2,9 +2,6 @@ package com.skyblue.shop.retrofit;
 
 import com.androidnetworking.interceptors.HttpLoggingInterceptor;
 
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

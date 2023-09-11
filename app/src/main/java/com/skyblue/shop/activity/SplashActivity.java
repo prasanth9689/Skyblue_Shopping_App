@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.WindowManager;
 
 import com.skyblue.shop.R;
-import com.skyblue.shop.SessionHandler;
 import com.skyblue.shop.databinding.ActivitySplashBinding;
 
 @SuppressLint("CustomSplashScreen")
