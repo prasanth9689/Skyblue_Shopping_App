@@ -76,6 +76,7 @@ public class Home extends AppCompatActivity {
 
     private boolean isLoading;
     private int visibleThreshold = 5;
+    private String test = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
