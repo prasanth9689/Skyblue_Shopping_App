@@ -71,50 +71,48 @@ public class NameActivity extends AppCompatActivity {
             Intent intent = new Intent(mContext, PrivacyPolicyActivity.class);
             startActivity(intent);
         });
+        binding.createBtn.setOnClickListener(v -> {
+            mName = binding.name.getText().toString().trim();
+            mArea = binding.area.getText().toString();
+            mLandmark = binding.landmark.getText().toString();
+            mPinCode = binding.pinCode.getText().toString();
+            mCity = binding.city.getText().toString();
+            mState = binding.spinnerState.getSelectedItem().toString();
 
-        binding.createBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mName = binding.name.getText().toString().trim();
-                mArea = binding.area.getText().toString();
-                mLandmark = binding.landmark.getText().toString();
-                mPinCode = binding.pinCode.getText().toString();
-                mCity = binding.city.getText().toString();
-                mState = binding.spinnerState.getSelectedItem().toString();
-
-                if (mName.isEmpty() || mName.length() < 2) {
-                    binding.name.setError(getResources().getString(R.string.please_enter_name));
-                    binding.name.requestFocus();
-                    return;
-                }if ((mArea.isEmpty() || mArea.length() < 2))
-                {
-                    binding.area.setError(getResources().getString(R.string.please_enter_area_sector_name));
-                    binding.area.requestFocus();
-                    return;
-                }if ((mLandmark.isEmpty() || mLandmark.length() < 2))
-                {
-                    binding.landmark.setError(getResources().getString(R.string.please_enter_landmark));
-                    binding.landmark.requestFocus();
-                    return;
-                }if ((mPinCode.isEmpty()))
-                {
-                    binding.pinCode.setError(getResources().getString(R.string.please_enter_pin_code));
-                    binding.pinCode.requestFocus();
-                    return;
-                }if (( mPinCode.length() < 2))
-                {
-                    binding.pinCode.setError(getResources().getString(R.string.error_please_enter_valid_pin_code));
-                    binding.pinCode.requestFocus();
-                    return;
-                }
-                if (mCity.isEmpty() || mCity.length() < 2) {
-                    binding.city.setError(getResources().getString(R.string.please_enter_city_town_name));
-                    binding.city.requestFocus();
-                }else{
-                    Signup();
-                }
+            if (mName.isEmpty() || mName.length() < 2) {
+                binding.name.setError(getResources().getString(R.string.please_enter_name));
+                binding.name.requestFocus();
+                return;
+            }if ((mArea.isEmpty() || mArea.length() < 2))
+            {
+                binding.area.setError(getResources().getString(R.string.please_enter_area_sector_name));
+                binding.area.requestFocus();
+                return;
+            }if ((mLandmark.isEmpty() || mLandmark.length() < 2))
+            {
+                binding.landmark.setError(getResources().getString(R.string.please_enter_landmark));
+                binding.landmark.requestFocus();
+                return;
+            }if ((mPinCode.isEmpty()))
+            {
+                binding.pinCode.setError(getResources().getString(R.string.please_enter_pin_code));
+                binding.pinCode.requestFocus();
+                return;
+            }if (( mPinCode.length() < 2))
+            {
+                binding.pinCode.setError(getResources().getString(R.string.error_please_enter_valid_pin_code));
+                binding.pinCode.requestFocus();
+                return;
+            }
+            if (mCity.isEmpty() || mCity.length() < 2) {
+                binding.city.setError(getResources().getString(R.string.please_enter_city_town_name));
+                binding.city.requestFocus();
+            }else{
+                Signup();
             }
         });
+
+        binding.back.setOnClickListener(v -> finish());
     }
 
     private void genarateFirebaseToken() {
@@ -177,7 +175,7 @@ public class NameActivity extends AppCompatActivity {
                 }
             }
             @Override
-            public void onFailure(Call<Registration> call, Throwable t) {
+            public void onFailure(@NonNull Call<Registration> call, @NonNull Throwable t) {
                 mProgressDialog.dismiss();
             }
         });
