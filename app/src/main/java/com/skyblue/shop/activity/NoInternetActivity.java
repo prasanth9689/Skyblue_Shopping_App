@@ -11,8 +11,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
-import com.skyblue.shop.helper.CheckNetwork;
 import com.skyblue.shop.R;
+import com.skyblue.shop.helper.CheckNetwork;
 
 public class NoInternetActivity extends AppCompatActivity {
 
@@ -29,15 +29,7 @@ public class NoInternetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Logic
 
-                if(CheckNetwork.isInternetAvailable(context)) //returns true if internet available
-                {
-                    finish();
-                }
 
-                else
-                {
-                    showMessageInSnackbar(getResources().getString(R.string.no_internet_connection));
-                }
             }
         });
     }

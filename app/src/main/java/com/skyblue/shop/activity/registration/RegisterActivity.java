@@ -20,11 +20,14 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.skyblue.shop.AppConstants;
+import com.skyblue.shop.Utils;
 import com.skyblue.shop.activity.Home;
 import com.skyblue.shop.activity.LoginActivity;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
 import com.skyblue.shop.databinding.ActivityRegisterBinding;
+import com.skyblue.shop.helper.CheckNetwork;
+import com.skyblue.shop.helper.GlobalVariables;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +47,9 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        CheckNetwork network = new CheckNetwork(getApplicationContext());
+        network.registerNetworkCallback();
 
         session = new SessionHandler(getApplicationContext());
         mRegisterSession = new RegistrationHandler(getApplicationContext());
@@ -66,43 +72,51 @@ public class RegisterActivity extends AppCompatActivity {
                return;
            }
 
-           InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
-           imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
-           ProgressDialog pDialog = new ProgressDialog(context, R.style.AppCompatAlertDialogStyle);
-           pDialog.setMessage(getResources().getString(R.string.please_wait___));
-           pDialog.setIndeterminate(false);
-           pDialog.setCancelable(false);
-           pDialog.show();
-
-           StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.REGISTER_CHECK_USER,
-                   response -> {
-                       pDialog.dismiss();
-                       if (response.equals("1"))
-                       {
-                           NewUserNext();
-                       }else
-                       {
-                           Intent intent = new Intent(context, LoginActivity.class);
-                           intent.putExtra("mobile",mMobileNumber );
-                           startActivity(intent);
-                       }
-                   },
-                   volleyError -> {
-                       pDialog.dismiss();
-                       showMessageInSnackbar(getString(R.string.error_check_internet_connection));
-                   }) {
-               @Override
-               protected Map<String, String> getParams() {
-                   Map<String, String> params = new HashMap<>();
-                   params.put("mobile", "+91" + mMobileNumber);
-                   return params;
-               }
-           };
-           RequestQueue requestQueue = Volley.newRequestQueue(context);
-           requestQueue.add(stringRequest);
+            if (GlobalVariables.isNetworkConnected){
+                checkAlreadyExists();
+            }else{
+                Utils.showMessage(context, "Check Internet connection!");
+            }
        });
         binding.back.setOnClickListener(view -> finish());
+    }
+
+    private void checkAlreadyExists() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+        ProgressDialog pDialog = new ProgressDialog(context, R.style.AppCompatAlertDialogStyle);
+        pDialog.setMessage(getResources().getString(R.string.please_wait___));
+        pDialog.setIndeterminate(false);
+        pDialog.setCancelable(false);
+        pDialog.show();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.REGISTER_CHECK_USER,
+                response -> {
+                    pDialog.dismiss();
+                    if (response.equals("1"))
+                    {
+                        NewUserNext();
+                    }else
+                    {
+                        Intent intent = new Intent(context, LoginActivity.class);
+                        intent.putExtra("mobile",mMobileNumber );
+                        startActivity(intent);
+                    }
+                },
+                volleyError -> {
+                    pDialog.dismiss();
+                    showMessageInSnackbar(getString(R.string.error_check_internet_connection));
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("mobile", "+91" + mMobileNumber);
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
     }
 
     private void NewUserNext() {

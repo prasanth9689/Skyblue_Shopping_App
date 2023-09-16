@@ -1,4 +1,4 @@
-package com.skyblue.shop.activity;
+package com.skyblue.shop.helper;
 
 public class GlobalVariables {
     // Global variable used to store network state

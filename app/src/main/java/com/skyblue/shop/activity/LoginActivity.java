@@ -9,7 +9,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -25,6 +24,8 @@ import com.skyblue.shop.SessionHandler;
 import com.skyblue.shop.Utils;
 import com.skyblue.shop.activity.registration.RegistrationHandler;
 import com.skyblue.shop.databinding.ActivityLoginBinding;
+import com.skyblue.shop.helper.CheckNetwork;
+import com.skyblue.shop.helper.GlobalVariables;
 import com.skyblue.shop.model.Login;
 import com.skyblue.shop.model.RegistrationSpModel;
 import com.skyblue.shop.model.User;
@@ -58,8 +59,6 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
         CheckNetwork network = new CheckNetwork(getApplicationContext());
         network.registerNetworkCallback();
@@ -95,13 +94,9 @@ public class LoginActivity extends AppCompatActivity {
             if (validateInputs()) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-
-                // Check network connection
                 if (GlobalVariables.isNetworkConnected){
-                    // Internet Connected
                     login();
                 }else{
-                    // Not Connected
                     Utils.showMessage(mContext, "Check Internet connection!");
                 }
             }

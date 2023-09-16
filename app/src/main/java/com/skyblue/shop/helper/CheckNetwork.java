@@ -1,38 +1,44 @@
 package com.skyblue.shop.helper;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.util.Log;
-
-import static androidx.constraintlayout.widget.Constraints.TAG;
+    import android.content.Context;
+    import android.net.ConnectivityManager;
+    import android.net.Network;
+    import android.net.NetworkRequest;
+    import android.os.Build;
 
 public class CheckNetwork {
 
+        Context context;
 
-    public static boolean isInternetAvailable(Context context)
-    {
-        NetworkInfo info = (NetworkInfo) ((ConnectivityManager)
-                context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo();
-
-        if (info == null)
-        {
-            Log.d(TAG,"no internet connection");
-            return false;
+        // You need to pass the context when creating the class
+        public CheckNetwork(Context context) {
+            this.context = context;
         }
-        else
-        {
-            if(info.isConnected())
-            {
-                Log.d(TAG," internet connection available...");
-                return true;
-            }
-            else
-            {
-                Log.d(TAG," internet connection");
-                return true;
-            }
 
+        // Network Check
+        public void registerNetworkCallback() {
+            try {
+                ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkRequest.Builder builder = new NetworkRequest.Builder();
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    connectivityManager.registerDefaultNetworkCallback(new ConnectivityManager.NetworkCallback() {
+                                                                           @Override
+                                                                           public void onAvailable(Network network) {
+                                                                               GlobalVariables.isNetworkConnected = true; // Global Static Variable
+                                                                           }
+
+                        @Override
+                                                                           public void onLost(Network network) {
+                                                                               GlobalVariables.isNetworkConnected = false; // Global Static Variable
+                                                                           }
+                                                                       }
+
+                    );
+                }
+                GlobalVariables.isNetworkConnected = false;
+            } catch (Exception e) {
+                GlobalVariables.isNetworkConnected = false;
+            }
         }
     }
-}
