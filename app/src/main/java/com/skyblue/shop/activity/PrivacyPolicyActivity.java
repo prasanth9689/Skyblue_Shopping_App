@@ -40,9 +40,6 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
 
         activity = this;
 
-        progressDialog = ProgressDialog.show(activity, getString(R.string.loading), getString(R.string.please_wait), true);
-        progressDialog.setCancelable(true);
-
         webView.loadUrl(AppConstants.PRIVACY_POLICY);
 
         WebSettings webSettings = webView.getSettings();
@@ -60,9 +57,10 @@ public class PrivacyPolicyActivity extends AppCompatActivity {
 
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                progressDialog.show();
-                view.loadUrl(url);
+                progressDialog = ProgressDialog.show(activity, getString(R.string.loading), getString(R.string.please_wait), true);
+                progressDialog.setCancelable(true);
 
+                view.loadUrl(url);
                 return true;
             }
 

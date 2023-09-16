@@ -56,7 +56,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void setOnClickListener() {
         binding.mobileNo.setOnClickListener(v -> binding.checkUserExpectation.setText(""));
-       binding.continueBtn.setOnClickListener(v -> {
+        binding.continueBtn.setOnClickListener(v -> {
            mMobileNumberFull =binding.ccp.getSelectedCountryCodeWithPlus() + binding.mobileNo.getText().toString();
            mMobileNumber = binding.mobileNo.getText().toString();
 
@@ -69,7 +69,7 @@ public class RegisterActivity extends AppCompatActivity {
            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 
-           ProgressDialog pDialog = new ProgressDialog(RegisterActivity.this, R.style.AppCompatAlertDialogStyle);
+           ProgressDialog pDialog = new ProgressDialog(context, R.style.AppCompatAlertDialogStyle);
            pDialog.setMessage(getResources().getString(R.string.please_wait___));
            pDialog.setIndeterminate(false);
            pDialog.setCancelable(false);
@@ -83,7 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
                            NewUserNext();
                        }else
                        {
-                           Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                           Intent intent = new Intent(context, LoginActivity.class);
+                           intent.putExtra("mobile",mMobileNumber );
                            startActivity(intent);
                        }
                    },
@@ -94,13 +95,14 @@ public class RegisterActivity extends AppCompatActivity {
                @Override
                protected Map<String, String> getParams() {
                    Map<String, String> params = new HashMap<>();
-                   params.put("mobile", mMobileNumber);
+                   params.put("mobile", "+91" + mMobileNumber);
                    return params;
                }
            };
            RequestQueue requestQueue = Volley.newRequestQueue(context);
            requestQueue.add(stringRequest);
        });
+        binding.back.setOnClickListener(view -> finish());
     }
 
     private void NewUserNext() {

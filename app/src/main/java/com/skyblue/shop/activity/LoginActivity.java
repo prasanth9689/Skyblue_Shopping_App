@@ -8,6 +8,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,10 +17,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
+import com.skyblue.shop.Utils;
 import com.skyblue.shop.activity.registration.RegistrationHandler;
 import com.skyblue.shop.databinding.ActivityLoginBinding;
 import com.skyblue.shop.model.Login;
@@ -27,6 +31,8 @@ import com.skyblue.shop.model.User;
 import com.skyblue.shop.activity.registration.RegisterActivity;
 import com.skyblue.shop.retrofit.APIClient;
 import com.skyblue.shop.retrofit.APIInterface;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,6 +59,11 @@ public class LoginActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        CheckNetwork network = new CheckNetwork(getApplicationContext());
+        network.registerNetworkCallback();
+
         mSession = new SessionHandler(getApplicationContext());
         mRegisterSession = new RegistrationHandler(getApplicationContext());
         mRegistrationSpModel = mRegisterSession.getRegisterData();
@@ -62,12 +73,10 @@ public class LoginActivity extends AppCompatActivity {
         if(mSession.isLoggedIn()){
             loadHome();
         }
-
         setOnClickListener();
-
-        mMobile = mRegistrationSpModel.getMobile();
+       // mMobile = mRegistrationSpModel.getMobile();
+        mMobile = getIntent().getStringExtra("mobile");
         binding.etMobile.setText(mMobile);
-
         binding.createBtn.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, RegisterActivity.class);
             startActivity(intent);
@@ -86,7 +95,15 @@ public class LoginActivity extends AppCompatActivity {
             if (validateInputs()) {
                 InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-                login();
+
+                // Check network connection
+                if (GlobalVariables.isNetworkConnected){
+                    // Internet Connected
+                    login();
+                }else{
+                    // Not Connected
+                    Utils.showMessage(mContext, "Check Internet connection!");
+                }
             }
         });
 
@@ -112,18 +129,76 @@ public class LoginActivity extends AppCompatActivity {
             Call<Login> call = mApiInterface.login(
                     mMobile,
                     mPassword,
-                    mFirebaseToken
+                    "mFirebaseToken"
             );
 
             call.enqueue(new Callback<Login>() {
                 @Override
-                public void onResponse(Call<Login> call, Response<Login> response) {
+                public void onResponse(@NonNull Call<Login> call, @NonNull Response<Login> response) {
+                    mProgressDialog.dismiss();
+                    Log.d("Login_", response.code()+"");
+                    if (response.code() == 200){
+                        // success
+                        Log.d("Login_", "Login : retrofit success 200");
 
+                        Login login = response.body();
+
+                        if (login.status.equals("true")){
+                            List<Login.Data> dataList = login.data;
+
+                            for (Login.Data data : dataList){
+                                Log.d("Login_", "Message :" + data.message);
+                                switch (Integer.parseInt(data.message)) {
+
+                                  case 1:
+                                      Utils.showMessage(mContext, "Check Username And Password!");
+                                      break;
+
+                                  case 2:
+                                      Utils.showMessage(mContext, "Account not found!");
+                                      break;
+
+                                      case 3:
+                                      Utils.showMessageInSnackbar(mContext, "Please Enter Empty Field");
+                                      break;
+
+                                      case 4:
+                                          Log.d("Login_", "Message :" + data.name);
+                                          String userId = data.id;
+                                          String userName = data.name;
+                                          String userArea = data.area;
+                                          String userLandmark = data.landmark;
+                                          String userCity = data.city;
+                                          String userPinCode = data.pin_code;
+                                          String userState = data.state;
+
+                                          Toast.makeText(mContext,"success",Toast.LENGTH_SHORT).show();
+
+                                          mSession.loginUser(userId ,mMobile, userName , userArea , userLandmark , userPinCode , userCity , userState);
+
+                                          Intent intent = new Intent(mContext, Home.class);
+                                          intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                          startActivity(intent);
+                                          break;
+
+                                          default:
+                                          Utils.showMessageInSnackbar(mContext, "TRY AGAIN");
+                                          break;
+                                }
+                            }
+                        }
+
+                    }else {
+                        // failure
+                        Utils.showMessageInSnackbar(mContext, "Failed. Check Internet connection.");
+
+                    }
                 }
 
                 @Override
-                public void onFailure(Call<Login> call, Throwable t) {
-
+                public void onFailure(@NonNull Call<Login> call, @NonNull Throwable t) {
+                    mProgressDialog.dismiss();
+                    Toast.makeText(mContext, "Error", Toast.LENGTH_SHORT).show();
                 }
             });
 //

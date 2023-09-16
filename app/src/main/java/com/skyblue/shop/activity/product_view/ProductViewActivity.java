@@ -28,6 +28,7 @@ import com.skyblue.shop.AppConstants;
 import com.skyblue.shop.activity.LoginActivity;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
+import com.skyblue.shop.databinding.ActivityProductViewBinding;
 import com.skyblue.shop.model.User;
 
 import java.text.SimpleDateFormat;
@@ -35,32 +36,33 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ProductViewActivity extends AppCompatActivity {
+    private ActivityProductViewBinding binding;
     private SessionHandler session;
 
-    ImageView backBtn;
+    private ImageView backBtn;
 
-    Context context = this;
-    ImageView imgViewProductMain;
-    TextView productNameTextView , productName2TextView , productRatingTextView;
-    TextView productSalePriceTextView , productDiscountTextView;
-    TextView productFeature1TextView , productFeature2TextView , productFeature3TextView , productFeature4TextView;
-    TextView productFeature5TextView;
-    Button placeTheOrderBtn;
+    private Context context = this;
+    private ImageView imgViewProductMain;
+    private TextView productNameTextView , productName2TextView , productRatingTextView;
+    private TextView productSalePriceTextView , productDiscountTextView;
+    private TextView productFeature1TextView , productFeature2TextView , productFeature3TextView , productFeature4TextView;
+    private TextView productFeature5TextView;
+    private Button placeTheOrderBtn;
     private Dialog reportEmptyInputsDialog;
     private Dialog placeTheOrderDialog;
     private Dialog ratingNowDialog;
     private Dialog orderSuccessDialog;
-    String spUserIdHolder , spUserNameHolder , spAreaNameHolder , spLandMarkHolder , spPinCodeHolder , spCityNameHolder , spStateNameHolder;
-    String getIntentproductId , getIntentMainThumnailUrl , getIntentproductName , getIntentproductName2 , getIntentproductRating , getIntentproductSalePrice;
-    String getIntentproductDiscountPrice , getIntentproductFeature1 , getIntentproductFeature2 , getIntentproductFeature3 , getIntentproductFeature4;
-    String getIntentproductFeature5;
+    private String spUserIdHolder , spUserNameHolder , spAreaNameHolder , spLandMarkHolder , spPinCodeHolder , spCityNameHolder , spStateNameHolder;
+    private String getIntentproductId , getIntentMainThumnailUrl , getIntentproductName , getIntentproductName2 , getIntentproductRating , getIntentproductSalePrice;
+    private String getIntentproductDiscountPrice , getIntentproductFeature1 , getIntentproductFeature2 , getIntentproductFeature3 , getIntentproductFeature4;
+    private String getIntentproductFeature5;
     private static final String ORDER_STATUS_SUCCESS = "1";
     private static final String ORDER_STATUS_CANCEL = "0";
     private static final String ORDER_STATUS_SUCCESS_TEXT = "ORDERED";
     private static final String ORDER_STATUS_CANCEL_TEXT = "CANCELED";
     private String currentDateString , currentTimeString , currentTimeZoneString;
     private String timeDateString;
-    LinearLayout ratingNowLL;
+    private LinearLayout ratingNowLL;
     int RATING_STAR_HOLDER;
 
     int RATING_FIVE_STAR = 5;
@@ -69,7 +71,7 @@ public class ProductViewActivity extends AppCompatActivity {
     int RATING_TWO_STAR = 5;
     int RATING_ONE_STAR = 5;
 
-    User user;
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

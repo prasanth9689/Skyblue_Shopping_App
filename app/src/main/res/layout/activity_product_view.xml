@@ -77,20 +77,20 @@
             android:id="@+id/product_name_product_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VEVO V5"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Product name"
             android:textColor="@color/black"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:fontFamily="@font/open_sans_light"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/product_name_2_product_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bluetooth Headset"
+            android:text="Gategory name"
             android:textColor="@color/grey_dialog_box"
-            android:textSize="10sp"
-            android:fontFamily="@font/open_sans_light"/>
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_semibold"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -126,19 +126,19 @@
                 android:layout_marginLeft="5dp"
                 android:text="@string/rupees_symbol"
                 android:textColor="#000000"
-                android:textSize="15sp"
-                android:fontFamily="@font/open_sans_light"/>
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_semibold"/>
 
             <TextView
                 android:id="@+id/sale_price_product_view_acti"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginStart="5dp"
                 android:text=""
                 android:textColor="#17881B"
-                android:textSize="15sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/open_sans_light"/>
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_semibold"/>
 
             <TextView
                 android:id="@+id/discount_price_product_view_acti"
@@ -147,8 +147,8 @@
                 android:layout_marginLeft="5dp"
                 android:text=""
                 android:textColor="@color/grey_dialog_box"
-                android:textSize="15sp"
-                android:fontFamily="@font/open_sans_light"/>
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_semibold"/>
         </LinearLayout>
 
         <LinearLayout
@@ -307,6 +307,7 @@
                     android:id="@+id/feature_1_product_view_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="#474A4C"
                     android:textSize="15sp"
@@ -315,6 +316,7 @@
                     android:id="@+id/feature_2_product_view_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="#474A4C"
                     android:textSize="15sp"
@@ -323,6 +325,7 @@
                     android:id="@+id/feature_3_product_view_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="#474A4C"
                     android:textSize="15sp"
@@ -331,6 +334,7 @@
                     android:id="@+id/feature_4_product_view_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="#474A4C"
                     android:textSize="15sp"
@@ -339,6 +343,7 @@
                     android:id="@+id/feature_5_product_view_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:text=""
                     android:textColor="#474A4C"
                     android:textSize="15sp"

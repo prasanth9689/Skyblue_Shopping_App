@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskExecutors;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,6 +24,7 @@ import com.skyblue.shop.R;
 import com.skyblue.shop.databinding.ActivityVerifyPhoneBinding;
 
 import java.util.concurrent.TimeUnit;
+
 
 public class VerifyPhoneActivity extends AppCompatActivity {
     private ActivityVerifyPhoneBinding binding;
@@ -47,20 +47,23 @@ public class VerifyPhoneActivity extends AppCompatActivity {
         mRegisterSession = new RegistrationHandler(getApplicationContext());
         mAuth = FirebaseAuth.getInstance();
 
-        mAuth = FirebaseAuth.getInstance();
+
+
+        //  mAuth = FirebaseAuth.getInstance();
         mPhonenumber = "+91" + mRegisterSession.getRegisterData().getMobile();
         sendVerificationCode(mPhonenumber);
 
       binding.verifyBtn.setOnClickListener(v -> {
-          displayLoader();
           String code = binding.otpCode.getText().toString().trim();
           if (code.isEmpty() || code.length() < 6) {
               binding.otpCode.setError(getResources().getString(R.string.enter_code_verificaton));
               binding.otpCode.requestFocus();
               return;
           }
+          displayLoader();
           verifyCode(code);
       });
+      binding.back.setOnClickListener(view1 -> finish());
     }
 
     private void sendVerificationCode(String number) {

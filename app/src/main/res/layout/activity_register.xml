@@ -32,6 +32,7 @@
                     android:layout_marginStart="10dp"
                     android:layout_toRightOf="@id/back"
                     android:text="Login In"
+                    android:textSize="20sp"
                     android:textColor="@color/black"
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_semibold"/>
