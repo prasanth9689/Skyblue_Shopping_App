@@ -6,6 +6,7 @@ public class AppConstants {
     public static final String HOME_GET_PRODUCTS = "https://imadras.com/prasanth/online_shopping/home_products_get.php";
     public static final String REGISTER_CHECK_USER = "https://imadras.com/prasanth/online_shopping/check_user.php";
     public static final String PRIVACY_POLICY= "https://imadras.com/prasanth/online_shopping/privacy_policy.html";
+    public static final String TERMS_AND_CONDITIONS = "https://imadras.com/prasanth/online_shopping/terms_conditions.html";
 
     public static final String LOGIN_URL = "https://imadras.com/prasanth/online_shopping/login.php";
     public static final String UPDATE_DELIVERY_ADDRESS = "https://imadras.com/prasanth/online_shopping/update_address.php";

@@ -1,6 +1,7 @@
 package com.skyblue.shop.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.skyblue.shop.activity.OrderViewActivity;
 import com.skyblue.shop.model.Orders;
 import com.skyblue.shop.R;
 
@@ -46,7 +49,24 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
 
         holder.productNameText.setText(orders.getProduct_name());
         holder.salePriceTextView.setText(orders.getAmount());
-
+        holder.main.setOnClickListener(view -> {
+            Intent intent = new Intent(context, OrderViewActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.putExtra("product_id", orders.getProduct_id());
+            intent.putExtra("thumbnail", orders.getThumbnail());
+            intent.putExtra("product_name", orders.getProduct_name());
+            intent.putExtra("title", orders.getTitle());
+            intent.putExtra("rating", orders.getRating());
+            intent.putExtra("sale_price", orders.getSale_price());
+            intent.putExtra("discount_price", orders.getDiscount_price());
+            intent.putExtra("feature_1", orders.getFeature_1());
+            intent.putExtra("feature_2", orders.getFeature_2());
+            intent.putExtra("feature_3", orders.getFeature_3());
+            intent.putExtra("feature_4", orders.getFeature_4());
+            intent.putExtra("feature_5", orders.getFeature_5());
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+        });
     }
 
 
@@ -70,6 +90,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
         TextView productNameText , productName2Text , discountPriceTextView , salePriceTextView;
         TextView ratingTextView;
         Button buyNowBtn;
+        CardView main;
 
         public ViewHolder(final View itemView) {
             super(itemView);
@@ -81,6 +102,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             salePriceTextView = itemView.findViewById(R.id.home_sale_price);
             ratingTextView = itemView.findViewById(R.id.product_home_rating_text_view);
             buyNowBtn = itemView.findViewById(R.id.buy_now_btn_home);
+            main = itemView.findViewById(R.id.main);
         }
     }
 }

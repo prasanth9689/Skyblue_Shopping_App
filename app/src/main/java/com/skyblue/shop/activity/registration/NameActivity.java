@@ -9,11 +9,15 @@ import android.widget.ArrayAdapter;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.skyblue.shop.Utils;
 import com.skyblue.shop.activity.Home;
-import com.skyblue.shop.activity.PrivacyPolicyActivity;
+import com.skyblue.shop.activity.settings.PrivacyPolicyActivity;
 import com.skyblue.shop.R;
 import com.skyblue.shop.SessionHandler;
 import com.skyblue.shop.databinding.ActivityNameBinding;
+import com.skyblue.shop.helper.CheckNetwork;
+import com.skyblue.shop.helper.GlobalVariables;
 import com.skyblue.shop.model.Registration;
 import com.skyblue.shop.model.RegistrationSpModel;
 import com.skyblue.shop.retrofit.APIClient;
@@ -38,6 +42,7 @@ public class NameActivity extends AppCompatActivity {
     private APIInterface apiInterface;
     private Context mContext = this;
     private RegistrationSpModel registrationSpModel;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +51,12 @@ public class NameActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        CheckNetwork network = new CheckNetwork(getApplicationContext());
+        network.registerNetworkCallback();
+
         session = new SessionHandler(getApplicationContext());
         mRegisterSession = new RegistrationHandler(getApplicationContext());
         registrationSpModel = mRegisterSession.getRegisterData();
-
 
         mMobile = "+91" + registrationSpModel.getMobile();
         mMobileNumberOnly = registrationSpModel.getMobile();
@@ -108,7 +115,11 @@ public class NameActivity extends AppCompatActivity {
                 binding.city.setError(getResources().getString(R.string.please_enter_city_town_name));
                 binding.city.requestFocus();
             }else{
-                Signup();
+                if (GlobalVariables.isNetworkConnected){
+                    Signup();
+                }else{
+                    Utils.showMessage(context, "Check Internet connection!");
+                }
             }
         });
 

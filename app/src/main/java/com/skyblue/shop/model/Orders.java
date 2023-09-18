@@ -5,6 +5,7 @@ public class Orders {
     public String product_id , product_name , title , thumbnail , amount;
     public String feature_1 , feature_2 , feature_3 , feature_4 , feature_5 ;
     public String seller_id , seller_name , order_status , status_text, order_date , order_date_time;
+    public String rating, sale_price, discount_price;
 
     public Orders() {
         this.product_id = product_id;
@@ -22,6 +23,9 @@ public class Orders {
         this.status_text = status_text;
         this.order_date_time = order_date_time;
         this.order_date = order_date;
+        this.rating = rating;
+        this.sale_price = sale_price;
+        this.discount_price = discount_price;
     }
 
     public void setProduct_id(String product_id) {
@@ -88,6 +92,18 @@ public class Orders {
         this.order_date = order_date;
     }
 
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public void setSale_price(String sale_price) {
+        this.sale_price = sale_price;
+    }
+
+    public void setDiscount_price(String discount_price) {
+        this.discount_price = discount_price;
+    }
+
     public String getProduct_name() {
         return product_name;
     }
@@ -150,5 +166,17 @@ public class Orders {
 
     public String getOrder_date() {
         return order_date;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public String getSale_price() {
+        return sale_price;
+    }
+
+    public String getDiscount_price() {
+        return discount_price;
     }
 }

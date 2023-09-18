@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.skyblue.shop.activity.PrivacyPolicyActivity;
 import com.skyblue.shop.R;
 
 public class SettingsActivity extends AppCompatActivity {

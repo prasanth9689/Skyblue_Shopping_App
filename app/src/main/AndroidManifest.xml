@@ -23,137 +23,141 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SkyblueShopping">
         <activity
-            android:name="com.skyblue.shop.activity.ChooseLanguageActivity"
+            android:name=".activity.OrderViewActivity"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity
+            android:name=".activity.ChooseLanguageActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.PostReviewActivity"
+            android:name=".activity.PostReviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.ReviewActivity"
+            android:name=".activity.ReviewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.settings.TermsAndConditionsActivity"
+            android:name=".activity.settings.TermsAndConditionsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.settings.AboutUsActivity"
+            android:name=".activity.settings.AboutUsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.settings.ContactUsActivity"
+            android:name=".activity.settings.ContactUsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.settings.SettingsActivity"
+            android:name=".activity.settings.SettingsActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.ProductsGridViewActivity"
+            android:name=".activity.ProductsGridViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.account.DeliveryAddressEditActivity"
+            android:name=".activity.account.DeliveryAddressEditActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.product_view.ProductViewActivity"
+            android:name=".activity.product_view.ProductViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.account.DeliveryAddressActivity"
+            android:name=".activity.account.DeliveryAddressActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.account.ProfileViewActivity"
+            android:name=".activity.account.ProfileViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:exported="false"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.DrawerWishListActivity"
+            android:name=".activity.DrawerWishListActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.DrawerMyOrderActivity"
+            android:name=".activity.DrawerMyOrderActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.DrawerSelectLanguageActivity"
+            android:name=".activity.DrawerSelectLanguageActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.DrawerOfferZoneActivity"
+            android:name=".activity.DrawerOfferZoneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.DrawerAllGategoriesActivity"
+            android:name=".activity.DrawerAllGategoriesActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.SearchActivity"
+            android:name=".activity.SearchActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.AccountActivity"
+            android:name=".activity.AccountActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.LoginActivity"
+            android:name=".activity.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.registration.RegisterActivity"
+            android:name=".activity.registration.RegisterActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.registration.VerifyPhoneActivity"
+            android:name=".activity.registration.VerifyPhoneActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.MobileBrandViewActivity"
+            android:name=".activity.MobileBrandViewActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.Home"
+            android:name=".activity.Home"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.NoInternetActivity"
+            android:name=".activity.NoInternetActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.registration.PasswordActivity"
+            android:name=".activity.registration.PasswordActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.registration.NameActivity"
+            android:name=".activity.registration.NameActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.PrivacyPolicyActivity"
+            android:name=".activity.settings.PrivacyPolicyActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name="com.skyblue.shop.activity.AboutUsActivity"
+            android:name=".activity.AboutUsActivity"
             android:exported="true" />
         <activity
-            android:name="com.skyblue.shop.activity.DashActivity"
+            android:name=".activity.DashActivity"
             android:exported="true" />
         <activity
-            android:name="com.skyblue.shop.activity.SplashActivity"
+            android:name=".activity.SplashActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.SkyblueShopping.NoActionBar">

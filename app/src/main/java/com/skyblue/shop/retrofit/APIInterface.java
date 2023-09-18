@@ -1,5 +1,6 @@
 package com.skyblue.shop.retrofit;
 
+import com.skyblue.shop.model.OrderCancel;
 import com.skyblue.shop.model.Login;
 import com.skyblue.shop.model.Registration;
 
@@ -31,4 +32,10 @@ public interface APIInterface {
     Call<Login> login(@Field("mobile") String name,
                      @Field("password") String password,
                      @Field("token") String token);
+
+    @FormUrlEncoded
+    @POST("/prasanth/online_shopping/cancel_order.php")
+    Call<OrderCancel> cancelOrder(@Field("product_id") String product_id,
+                                  @Field("user_id") String user_id,
+                                  @Field("akila") String akila);
 }

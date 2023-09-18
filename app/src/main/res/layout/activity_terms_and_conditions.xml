@@ -10,25 +10,26 @@
         android:id="@+id/top_nav"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#FFFFFF">
+        android:background="@color/skyblue_nav2">
+
 
         <ImageView
-            android:id="@+id/back_terms_and_conditions"
+            android:id="@+id/back"
             android:layout_width="35dp"
             android:layout_height="30dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
             app:srcCompat="@drawable/ic_baseline_arrow_back_white_40"
-            app:tint="@color/black" />
+            app:tint="@color/white" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@id/back_terms_and_conditions"
+            android:layout_toRightOf="@id/back"
             android:text="@string/terms_and_conditions"
-            android:textColor="#000000"
+            android:textColor="@color/white"
             android:textSize="20dp"
             android:fontFamily="@font/open_sans_light"/>
 

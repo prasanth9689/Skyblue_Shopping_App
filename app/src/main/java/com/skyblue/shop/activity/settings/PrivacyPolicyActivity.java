@@ -1,4 +1,4 @@
-package com.skyblue.shop.activity;
+package com.skyblue.shop.activity.settings;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;

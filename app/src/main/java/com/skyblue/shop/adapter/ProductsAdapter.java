@@ -70,25 +70,22 @@ public class ProductsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         .placeholder(R.drawable.default_placeholder)
                         .into(productViewHolder.productImageView);
 
-                productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(context , ProductViewActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("product_id", products.getId());
-                        intent.putExtra("thumbnail", products.getThumbnail());
-                        intent.putExtra("product_name", products.getProduct_name());
-                        intent.putExtra("title", products.getTitle());
-                        intent.putExtra("rating", products.getRating());
-                        intent.putExtra("sale_price", products.getSale_price());
-                        intent.putExtra("discount_price", products.getDiscount_price());
-                        intent.putExtra("feature_1", products.getFeature_1());
-                        intent.putExtra("feature_2", products.getFeature_2());
-                        intent.putExtra("feature_3", products.getFeature_3());
-                        intent.putExtra("feature_4", products.getFeature_4());
-                        intent.putExtra("feature_5", products.getFeature_5());
-                        context.startActivity(intent);
-                    }
+                productViewHolder.itemView.setOnClickListener(v -> {
+                    Intent intent = new Intent(context , ProductViewActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("product_id", products.getId());
+                    intent.putExtra("thumbnail", products.getThumbnail());
+                    intent.putExtra("product_name", products.getProduct_name());
+                    intent.putExtra("title", products.getTitle());
+                    intent.putExtra("rating", products.getRating());
+                    intent.putExtra("sale_price", products.getSale_price());
+                    intent.putExtra("discount_price", products.getDiscount_price());
+                    intent.putExtra("feature_1", products.getFeature_1());
+                    intent.putExtra("feature_2", products.getFeature_2());
+                    intent.putExtra("feature_3", products.getFeature_3());
+                    intent.putExtra("feature_4", products.getFeature_4());
+                    intent.putExtra("feature_5", products.getFeature_5());
+                    context.startActivity(intent);
                 });
 
                 productViewHolder.buyNowBtn.setOnClickListener(new View.OnClickListener() {

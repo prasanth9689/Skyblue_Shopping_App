@@ -127,8 +127,9 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
                                 orders.setStatus_text(jsonObject2.getString("order_status_text"));
                                 orders.setOrder_date_time(jsonObject2.getString("order_date_time"));
                                 orders.setOrder_date(jsonObject2.getString("order_date"));
-
-
+                                orders.setRating(jsonObject2.getString("rating"));
+                                orders.setSale_price(jsonObject2.getString("sale_price"));
+                                orders.setDiscount_price(jsonObject2.getString("discount_price"));
                                 orderList.add(orders);
                             }
                         } catch (JSONException e) {

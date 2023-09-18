@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:text="Cancel order"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/open_sans_light"/>
+
+    <RelativeLayout
+        android:id="@+id/rating_star_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="5dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:baselineAlignBottom="false"
+                app:srcCompat="@drawable/cancel_order" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Are you you want cancel order"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:fontFamily="@font/open_sans_light"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/btn_container"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/rating_star_container">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/save_card_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp"
+            app:cardCornerRadius="30dp">
+
+            <Button
+                android:id="@+id/order_cancel_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryBlue"
+                android:text="yes"
+                android:textColor="#FFFFFF"
+                android:fontFamily="@font/open_sans_light"/>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+    <!--    <View-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="10dp"-->
+    <!--        android:background="red"-->
+    <!--        android:layout_below="@+id/save_card_view"-->
+    <!--        />-->
+</RelativeLayout>
