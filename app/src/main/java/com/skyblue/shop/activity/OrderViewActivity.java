@@ -26,6 +26,7 @@ import com.skyblue.shop.model.User;
 import com.skyblue.shop.retrofit.APIClient;
 import com.skyblue.shop.retrofit.APIInterface;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -172,10 +173,22 @@ public class OrderViewActivity extends AppCompatActivity {
 
         String mDate = currentDateString;
 
+        Date date = null;
+        String newDate;
+        try {
+            date = new SimpleDateFormat("MM-dd-yyyy HH:mm:ss").parse(timeDateString);
+            newDate = new SimpleDateFormat("h:mm a").format(date);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+
+
         Call<OrderCancel> call = mApiInterface.cancelOrder(
                 getIntentproductId,
                 user.getId(),
-                "tim"
+                currentDateString,
+                timeDateString,
+                newDate
         );
 
         call.enqueue(new Callback<OrderCancel>() {

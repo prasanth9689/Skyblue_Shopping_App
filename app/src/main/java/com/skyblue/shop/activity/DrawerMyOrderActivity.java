@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -100,6 +101,7 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
     }
 
     private void getOrderList() {
+
         final StringRequest stringRequest = new StringRequest(Request.Method.POST, AppConstants.GET_ORDER_LIST,
                 new Response.Listener<String>() {
                     @Override
@@ -130,6 +132,7 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
                                 orders.setRating(jsonObject2.getString("rating"));
                                 orders.setSale_price(jsonObject2.getString("sale_price"));
                                 orders.setDiscount_price(jsonObject2.getString("discount_price"));
+
                                 orderList.add(orders);
                             }
                         } catch (JSONException e) {
@@ -160,5 +163,13 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(context);
         requestQueue.add(stringRequest);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        adapter.notifyDataSetChanged();
+        recyclerView.setAdapter(adapter);
+        getOrderList();
     }
 }

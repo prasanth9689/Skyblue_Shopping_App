@@ -37,5 +37,7 @@ public interface APIInterface {
     @POST("/prasanth/online_shopping/cancel_order.php")
     Call<OrderCancel> cancelOrder(@Field("product_id") String product_id,
                                   @Field("user_id") String user_id,
-                                  @Field("akila") String akila);
+                                  @Field("canceled_date") String canceled_date,
+                                  @Field("canceled_time") String canceled_time,
+                                  @Field("canceled_time_2") String canceled_time_2);
 }
