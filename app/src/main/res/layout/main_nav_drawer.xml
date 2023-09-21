@@ -146,7 +146,8 @@
         android:onClick="ClickSelectLanguage"
         android:background="@drawable/button_click_default"
         android:clickable="true"
-        android:focusable="true">
+        android:focusable="true"
+        android:visibility="gone">
 
         <ImageView
             android:layout_width="30dp"
