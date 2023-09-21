@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
@@ -69,6 +70,7 @@ public class OrderViewActivity extends AppCompatActivity {
     private User user;
 
     private APIInterface mApiInterface;
+    private Dialog customProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +88,7 @@ public class OrderViewActivity extends AppCompatActivity {
         initializeVariable();
         loadIntent();
         initConfirmCancelOrderDialog();
+        initProgressDialog();
 
         Glide
                 .with(context)
@@ -164,7 +167,7 @@ public class OrderViewActivity extends AppCompatActivity {
     }
 
     private void cancelOrder() {
-
+        customProgressDialog.show();
         currentDateString = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
         currentTimeString = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
         currentTimeZoneString = new SimpleDateFormat("z", Locale.getDefault()).format(new Date());
@@ -194,6 +197,7 @@ public class OrderViewActivity extends AppCompatActivity {
         call.enqueue(new Callback<OrderCancel>() {
             @Override
             public void onResponse(Call<OrderCancel> call, Response<OrderCancel> response) {
+                customProgressDialog.dismiss();
                 if (response.code() == 200) {
                     OrderCancel orderCancel = response.body();
 
@@ -201,6 +205,12 @@ public class OrderViewActivity extends AppCompatActivity {
                         List<OrderCancel.Data> dataList = orderCancel.data;
                         for (OrderCancel.Data data : dataList){
                             Log.d("cancel__", "" + data.message);
+
+                            if (data.status_in){
+                                Intent intent = new Intent(context, DrawerMyOrderActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
                         }
                     }
                 }
@@ -208,8 +218,28 @@ public class OrderViewActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<OrderCancel> call, Throwable t) {
+                customProgressDialog.dismiss();
                 Log.d("cancel__", t.getMessage());
             }
         });
+    }
+
+    private void initProgressDialog() {
+        customProgressDialog = new Dialog(context);
+        customProgressDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        customProgressDialog.setContentView(R.layout.model_dialog_custom_progress);
+        customProgressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        customProgressDialog.setCancelable(false);
+
+        TextView textView = customProgressDialog.findViewById(R.id.message1);
+        textView.setEnabled(true);
+        textView.setText("Please wait. canceling the order");
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(context, DrawerMyOrderActivity.class);
+        startActivity(intent);
     }
 }

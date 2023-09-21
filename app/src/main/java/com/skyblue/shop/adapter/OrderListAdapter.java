@@ -64,6 +64,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.View
             intent.putExtra("feature_3", orders.getFeature_3());
             intent.putExtra("feature_4", orders.getFeature_4());
             intent.putExtra("feature_5", orders.getFeature_5());
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         });

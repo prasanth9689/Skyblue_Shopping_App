@@ -21,5 +21,8 @@ public class OrderCancel {
     public class Data{
         @SerializedName("message")
         public String message;
+
+        @SerializedName("status_in")
+        public boolean status_in;
     }
 }

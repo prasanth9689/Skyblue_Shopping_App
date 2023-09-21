@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 
@@ -48,7 +49,8 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
     Context context = this;
     ImageView backButton;
     User user;
-    RelativeLayout mainLayout , emptyLayout;
+    RelativeLayout mainLayout ;
+    LinearLayout emptyOrderLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +70,7 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
         orderList.clear();
         getOrderList();
 
-//        if (orderList.isEmpty()){
-//            emptyLayout.setVisibility(View.VISIBLE);
-//            mainLayout.setVisibility(View.INVISIBLE);
-//        }
+      Log.e("cancel_", String.valueOf(orderList.size()));
     }
 
     private void initSetOnClicklistener() {
@@ -97,7 +96,7 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view);
         progressDialog = findViewById(R.id.progressBar);
         mainLayout = findViewById(R.id.id_order_list_container);
-        emptyLayout = findViewById(R.id.empty_layout);
+        emptyOrderLayout = findViewById(R.id.empty_order);
     }
 
     private void getOrderList() {
@@ -135,6 +134,10 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
 
                                 orderList.add(orders);
                             }
+                            int items = orderList.size();
+                            if (items == 0){
+                                emptyOrderLayout.setVisibility(View.VISIBLE);
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                             progressDialog.setVisibility(View.INVISIBLE);
@@ -166,10 +169,9 @@ public class DrawerMyOrderActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        adapter.notifyDataSetChanged();
-        recyclerView.setAdapter(adapter);
-        getOrderList();
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(context, Home.class);
+        startActivity(intent);
     }
 }
